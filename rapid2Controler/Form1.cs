@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ABB.Robotics;
@@ -36,6 +38,10 @@ namespace rapid2Controler
          // 转化为工具坐标和坐标系
         public ToolData toolData;
         public WobjData wobjData;
+
+        // 插入代码段
+        public string InsertedCodePath = Application.StartupPath + @"\InsertedCode\";
+
         public Form1()
         {
           //   controller.StateChanged += new EventHandler<StateChangedEventArgs>(Controller_StateChanged);
@@ -76,7 +82,9 @@ namespace rapid2Controler
                     button1_Click(null, null); // 上传后刷新列表
                     label2_INFO.Text = "目录已存在同名文件，已覆盖上传至控制器。" +  "---" + $"文件列表已刷新，共发现文件 {ALLdg} 个";
                     setInfoColor(Color.FromArgb(30, 144, 255), Color.FromArgb(248, 248, 255));
-
+                    // 是否保留路径
+                    if (checkBox_storePath.Checked == true) { }
+                    else { textBox_path.Text = "当前路径 < 准备中"; }
                 }
                 else { 
                     controller.FileSystem.PutFile(textBox_path.Text); 
@@ -84,6 +92,8 @@ namespace rapid2Controler
                     label2_INFO.Text = ("已上传至控制器，" + controller.FileSystem.GetRemotePath(fileName) +"目录下"  +  "---" + $"文件列表已刷新，共发现文件 {ALLdg} 个");
                     setInfoColor(Color.FromArgb(30, 144, 255), Color.FromArgb(248, 248, 255));
 
+                    if (checkBox_storePath.Checked == true) { }
+                    else { textBox_path.Text = "当前路径 < 准备中"; }
                 }
             }
             catch (InvalidOperationException ex) { label2_INFO.Text = (ex.Message + "上传失败"); setInfoColor(Color.FromArgb(205, 38, 38), Color.FromArgb(248, 248, 255)); }
@@ -242,6 +252,7 @@ namespace rapid2Controler
             panel2.Enabled = true;
             panel2.Visible = true;
             label2_INFO.Text = "[连接]窗口已显示，请确保 [ 其他控制 ] 窗口已关闭。";
+            checkVisibleSonForm();
                 setInfoColor();
         }
 
@@ -253,7 +264,8 @@ namespace rapid2Controler
             panel3.Enabled = true;
             panel3.Visible = true;
             label2_INFO.Text = "[文件传输]窗口已显示，请确保 [ 其他控制 ] 窗口已关闭。";
-                setInfoColor();
+            checkVisibleSonForm();
+           setInfoColor();
         }
 
         private void listBox2_fileStore_SelectedIndexChanged(object sender, EventArgs e)
@@ -269,6 +281,9 @@ namespace rapid2Controler
 
         public void activeWindow(Form form) // 激活窗口方法 form 参数传入： new + form();
         {
+            panel2.Visible = false;
+            panel3.Visible = false;
+
             if (activeForm != false)
             {
                 form.Close();
@@ -276,6 +291,7 @@ namespace rapid2Controler
                 setInfoColor();
                 panel_sonForm.Visible = false;
                 activeForm = false;
+
             }
             // else if 
             else
@@ -384,6 +400,53 @@ namespace rapid2Controler
         private void label_controllerState_Click(object sender, EventArgs e)
         {
             // Controller_StateChanged
+        }
+        public void checkVisibleSonForm()
+        {
+            if (panel2.Visible == true || panel3.Visible == true)
+            {
+                panel_sonForm.Visible = false;
+            }
+        }
+
+        private void button_fresh_Click(object sender, EventArgs e)
+        {
+            listBox_insertedCodelist.Items.Clear();
+            // CodePath.Replace(@"\", "/");
+            string[] files = Directory.GetFiles(InsertedCodePath,"*");
+            foreach (string item in files)
+            {
+                listBox_insertedCodelist.Items.Add(item.Split('\\').Last());
+            }
+        }
+
+        private void button_insert_Click(object sender, EventArgs e)
+        {
+            ReplaceValue(textBox_path.Text.Replace("//", @"\"),listBox_insertedCodelist.SelectedItem.ToString().Split('.').First(),File.ReadAllText(InsertedCodePath+ listBox_insertedCodelist.SelectedItem.ToString()));
+            label2_INFO.Text = "代码段已插入" ;
+            setInfoColor(Color.FromArgb(30, 144, 255), Color.FromArgb(248, 248, 255));
+        }
+
+        /// <summary>
+        /// 替换值
+        /// </summary>
+        /// <param name="strFilePath">txt等文件的路径</param>
+        /// <param name="strIndex">索引的字符串，定位到某一行</param>
+        /// <param name="newValue">替换新值</param>
+        private void ReplaceValue(string strFilePath, string strIndex, string newValue)
+        {
+            if (File.Exists(strFilePath))
+            {
+                string[] lines = System.IO.File.ReadAllLines(strFilePath);
+                for (int i = 0; i < lines.Length; i++)
+                {
+                    if (lines[i].Contains("!" + strIndex))
+                    {
+                        lines[i] = newValue;
+                    }
+                }
+                File.WriteAllLines(strFilePath, lines);
+            }
         }
     }
 }

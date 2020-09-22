@@ -69,11 +69,17 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.label_controllerState = new System.Windows.Forms.Label();
             this.panel_sonForm = new System.Windows.Forms.Panel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.listBox_insertedCodelist = new System.Windows.Forms.ListBox();
+            this.button_insert = new System.Windows.Forms.Button();
+            this.button_fresh = new System.Windows.Forms.Button();
+            this.checkBox_storePath = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // button_connect
@@ -163,7 +169,7 @@
             this.textBox_path.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox_path.Cursor = System.Windows.Forms.Cursors.Cross;
             this.textBox_path.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox_path.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.textBox_path.ForeColor = System.Drawing.Color.Teal;
             this.textBox_path.Location = new System.Drawing.Point(84, 60);
             this.textBox_path.Name = "textBox_path";
             this.textBox_path.Size = new System.Drawing.Size(350, 22);
@@ -529,6 +535,8 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.checkBox_storePath);
+            this.panel3.Controls.Add(this.groupBox1);
             this.panel3.Controls.Add(this.button7);
             this.panel3.Controls.Add(this.label7);
             this.panel3.Controls.Add(this.button6);
@@ -538,9 +546,9 @@
             this.panel3.Controls.Add(this.listBox2_fileStore);
             this.panel3.Controls.Add(this.button2);
             this.panel3.Controls.Add(this.button1);
-            this.panel3.Location = new System.Drawing.Point(641, 134);
+            this.panel3.Location = new System.Drawing.Point(641, 12);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(451, 358);
+            this.panel3.Size = new System.Drawing.Size(450, 487);
             this.panel3.TabIndex = 17;
             // 
             // button7
@@ -552,7 +560,7 @@
             this.button7.ForeColor = System.Drawing.Color.White;
             this.button7.Image = ((System.Drawing.Image)(resources.GetObject("button7.Image")));
             this.button7.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button7.Location = new System.Drawing.Point(280, 310);
+            this.button7.Location = new System.Drawing.Point(101, 280);
             this.button7.Name = "button7";
             this.button7.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.button7.Size = new System.Drawing.Size(155, 27);
@@ -567,7 +575,7 @@
             this.label7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(153)))));
             this.label7.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(143, 340);
+            this.label7.Location = new System.Drawing.Point(115, 310);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(292, 17);
             this.label7.TabIndex = 14;
@@ -582,7 +590,7 @@
             this.button6.ForeColor = System.Drawing.Color.White;
             this.button6.Image = ((System.Drawing.Image)(resources.GetObject("button6.Image")));
             this.button6.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button6.Location = new System.Drawing.Point(280, 279);
+            this.button6.Location = new System.Drawing.Point(262, 279);
             this.button6.Name = "button6";
             this.button6.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.button6.Size = new System.Drawing.Size(155, 27);
@@ -621,6 +629,72 @@
             this.panel_sonForm.Size = new System.Drawing.Size(146, 143);
             this.panel_sonForm.TabIndex = 19;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.button_fresh);
+            this.groupBox1.Controls.Add(this.button_insert);
+            this.groupBox1.Controls.Add(this.listBox_insertedCodelist);
+            this.groupBox1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.groupBox1.Location = new System.Drawing.Point(133, 339);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(252, 107);
+            this.groupBox1.TabIndex = 16;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "插入代码段";
+            // 
+            // listBox_insertedCodelist
+            // 
+            this.listBox_insertedCodelist.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.listBox_insertedCodelist.FormattingEnabled = true;
+            this.listBox_insertedCodelist.ItemHeight = 17;
+            this.listBox_insertedCodelist.Location = new System.Drawing.Point(7, 24);
+            this.listBox_insertedCodelist.Name = "listBox_insertedCodelist";
+            this.listBox_insertedCodelist.Size = new System.Drawing.Size(188, 72);
+            this.listBox_insertedCodelist.TabIndex = 0;
+            // 
+            // button_insert
+            // 
+            this.button_insert.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.button_insert.FlatAppearance.BorderSize = 0;
+            this.button_insert.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_insert.Font = new System.Drawing.Font("微软雅黑", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button_insert.ForeColor = System.Drawing.Color.White;
+            this.button_insert.Location = new System.Drawing.Point(199, 51);
+            this.button_insert.Name = "button_insert";
+            this.button_insert.Size = new System.Drawing.Size(47, 21);
+            this.button_insert.TabIndex = 17;
+            this.button_insert.Text = "插入";
+            this.button_insert.UseVisualStyleBackColor = false;
+            this.button_insert.Click += new System.EventHandler(this.button_insert_Click);
+            // 
+            // button_fresh
+            // 
+            this.button_fresh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.button_fresh.FlatAppearance.BorderSize = 0;
+            this.button_fresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_fresh.Font = new System.Drawing.Font("微软雅黑", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button_fresh.ForeColor = System.Drawing.Color.White;
+            this.button_fresh.Location = new System.Drawing.Point(199, 24);
+            this.button_fresh.Name = "button_fresh";
+            this.button_fresh.Size = new System.Drawing.Size(47, 21);
+            this.button_fresh.TabIndex = 18;
+            this.button_fresh.Text = "刷新";
+            this.button_fresh.UseVisualStyleBackColor = false;
+            this.button_fresh.Click += new System.EventHandler(this.button_fresh_Click);
+            // 
+            // checkBox_storePath
+            // 
+            this.checkBox_storePath.AutoSize = true;
+            this.checkBox_storePath.Checked = true;
+            this.checkBox_storePath.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_storePath.Font = new System.Drawing.Font("微软雅黑", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.checkBox_storePath.Location = new System.Drawing.Point(7, 415);
+            this.checkBox_storePath.Name = "checkBox_storePath";
+            this.checkBox_storePath.Size = new System.Drawing.Size(87, 20);
+            this.checkBox_storePath.TabIndex = 17;
+            this.checkBox_storePath.Text = "保留上传路径";
+            this.checkBox_storePath.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -648,6 +722,7 @@
             this.panel3.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -694,6 +769,11 @@
         private System.Windows.Forms.ColumnHeader columnHeader4_sysInfo;
         private System.Windows.Forms.ColumnHeader columnHeader5_ControllerID;
         public System.Windows.Forms.Label label_controllerState;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.ListBox listBox_insertedCodelist;
+        private System.Windows.Forms.Button button_fresh;
+        private System.Windows.Forms.Button button_insert;
+        private System.Windows.Forms.CheckBox checkBox_storePath;
     }
 }
 
