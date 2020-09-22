@@ -21,11 +21,15 @@ namespace rapid2Controler
     public partial class dataMonitor : Form //   :Form 继承Form1
     {
         // Controller.Connect()
-        Form1 Mainform = new Form1();
-        
+        Form1 Mainform;
+        Tool tool1;
+        WorkObject w1;
         public dataMonitor()
         {
             InitializeComponent();
+            Mainform = new Form1();
+            tool1 = Mainform.tool;
+            w1 = Mainform.w;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -37,8 +41,8 @@ namespace rapid2Controler
             //ToolData toolData = (ToolData)tool.Data;
             //WobjData wobjData = (WobjData)w.Data;
 
-            label_tool.Text = "当前Tool：" + Mainform.tool.Name ;
-            label_wobj.Text = "工具坐标系：" + Mainform.w.Name ;
+            label_tool.Text = "当前Tool：" + tool1.Name ;
+            label_wobj.Text = "工具坐标系：" + w1.Name ;
         }
     }
 }

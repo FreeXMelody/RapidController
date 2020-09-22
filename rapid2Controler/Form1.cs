@@ -12,8 +12,6 @@ using ABB.Robotics.Controllers;
 using ABB.Robotics.Controllers.Discovery;   
 using ABB.Robotics.Controllers.EventLogDomain;
 using ABB.Robotics.Controllers.FileSystemDomain;
-using System.Runtime.InteropServices; // 无边框窗口阴影 与 拖动窗口
-using System.Windows.Input;
 using ABB.Robotics.Controllers.MotionDomain;
 using ABB.Robotics.Controllers.RapidDomain;
 
@@ -24,10 +22,11 @@ namespace rapid2Controler
     {
         public NetworkScanner scanner ;
         public Controller controller ;
+        public MotionSystem motion;
         public string fileName = "";
         public const string Prefix = "";
         public bool activeForm = false;
-        public Color defaultBackColor = Color.FromArgb(51, 153, 153);
+        public  Color defaultBackColor = Color.FromArgb(51, 153, 153);
         public Color defaultforeColor = Color.FromName("Window");
         public ControllerInfo controllerInfos1;
         public int ALLdg;
@@ -82,7 +81,7 @@ namespace rapid2Controler
                 else { 
                     controller.FileSystem.PutFile(textBox_path.Text); 
                     button1_Click(null, null);
-                    label2_INFO.Text = ("已上传至控制器，HOME目录下" + "---" + $"文件列表已刷新，共发现文件 {ALLdg} 个");
+                    label2_INFO.Text = ("已上传至控制器，" + controller.FileSystem.GetRemotePath(fileName) +"目录下"  +  "---" + $"文件列表已刷新，共发现文件 {ALLdg} 个");
                     setInfoColor(Color.FromArgb(30, 144, 255), Color.FromArgb(248, 248, 255));
 
                 }
@@ -93,7 +92,6 @@ namespace rapid2Controler
         // 扫描控制器 name + ip   controller.info
         public void scanNetwork()
         {
-            int i=1; // 用于dataGridView 记录Rows
             scanner = new NetworkScanner();
             scanner.Scan();
             ControllerInfoCollection controllers = scanner.Controllers;
@@ -109,24 +107,14 @@ namespace rapid2Controler
                 //listView1.Items[i].SubItems[3].Text = info.Version.ToString();
                 //listView1.Items[i].SubItems[4].Text = info.SystemId.ToString();
 
-
-
-                // 顺序: SysName/ IP / ControllerName / SysInfo  / ID
-                listViewItem1.Text = (info.SystemName);
+                // INDEX: SysName/ IP / ControllerName / SysInfo  / ID
+                listViewItem1.Text = (info.SystemName); // 第一列
                 listViewItem1.SubItems.Add(info.IPAddress.ToString());
                 listViewItem1.SubItems.Add(info.ControllerName);
                 listViewItem1.SubItems.Add(info.Version.ToString());
                 listViewItem1.SubItems.Add(info.SystemId.ToString());
                 listView1.Items.Add(listViewItem1);
-                // dataGridView
-                //    dataGridView_ControlllerInfo.Rows[i].Cells[0].Value = info.ControllerName + "/" + info.IPAddress.ToString(); // cells : 这一行的第几个单元格
-                //dataGridView_ControlllerInfo.Rows[i].Cells[1].Value = info.Id;
-
-                //  dataGridView_ControlllerInfo.Rows.Add(info.ControllerName + "/" + info.IPAddress.ToString() >> [0], info.Id[1]);
-                // listBox1.Items.Add(info.ControllerName + "/" + info.IPAddress.ToString());
-                i++;
             }
-            Console.WriteLine(i);
         }
         public bool connectController()
         {
@@ -155,9 +143,10 @@ namespace rapid2Controler
                             controller.Logon(UserInfo.DefaultUser);
 
                             controllerInfos1 = info;
-                            
+                            Text ="当前已连接：" + listView1.SelectedItems[0].Text;
                             label2_INFO.Text = "已连接。";
                             setInfoColor();
+                            motion = controller.MotionSystem;   // 测试
                             button_connect.Text = "     断开";
                             return true;
                         }
@@ -172,15 +161,14 @@ namespace rapid2Controler
         {
             // 连接到示教器
             connectController();
+            motion = controller.MotionSystem;
         }
 
         private void button_updata_Click(object sender, EventArgs e)
         {
-            label1.Visible = true;
             scanNetwork();
             // label1.Text =" IP扫描结果："+listBox1.Items.Count.ToString();
             label1.Text = " IP扫描结果：" + listView1.Items.Count.ToString() ;
-            setInfoColor(Color.FromArgb(30, 144, 255), Color.FromArgb(248, 248, 255));
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -193,7 +181,6 @@ namespace rapid2Controler
             for (int i = 0; i < Anarray.Length; i++)
             {
                 listBox2_fileStore.Items.Add(Anarray[i].FullName.Split('/').Last());  // listbox插入项： 只显示：只取文件名+后缀
-                // listBox2_fileStore.Items.Add(Anarray[i].FullName.Split('/').Last()); // 使用ControllerFileSystemInfo.FullName取出完整路径
             }
             ALLdg = listBox2_fileStore.Items.Count;
             label2_INFO.Text = $"扫描完毕，共发现文件{ALLdg}个";
@@ -226,25 +213,6 @@ namespace rapid2Controler
                 return;
             }
         }
-
-
-        //// 无边框拖动窗口
-        //private const int WM_NCLBUTTONDOWN = 0x00A1;
-        //private const int HTCAPTION = 2;
-        //[DllImport("user32.dll", CharSet = CharSet.Unicode)]
-        //public static extern IntPtr SendMessage(IntPtr hwnd, int wMsg, IntPtr wParam, IntPtr lParam);
-        //[DllImport("user32.dll", CharSet = CharSet.Unicode)]
-        //public static extern bool ReleaseCapture();
-        //protected override void OnMouseDown(MouseEventArgs e)
-        //{
-        //    base.OnMouseDown(e);
-        //    if (e.Button == MouseButtons.Left)  // 按下的是鼠标左键              
-        //    {
-        //        ReleaseCapture();   // 释放捕获                 
-        //        SendMessage(this.Handle, WM_NCLBUTTONDOWN, (IntPtr)HTCAPTION, IntPtr.Zero);    // 拖动窗体              
-        //    }
-        //}
-
 
         // panel 显示子窗口 
         public void ShowForm(Form formA, Panel panelA)
@@ -358,6 +326,7 @@ namespace rapid2Controler
 
         private void textBox_path_DragEnter(object sender, DragEventArgs e)
         {
+            e.Effect = DragDropEffects.Move;
             string path = ((System.Array)e.Data.GetData(DataFormats.FileDrop)).GetValue(0).ToString();
             textBox_path.Text = path;
             textBox_path.Text = textBox_path.Text.Replace("\\", "//");
@@ -372,11 +341,7 @@ namespace rapid2Controler
             this.label2_INFO.BackColor = defaultBackColor;
             this.label2_INFO.ForeColor = defaultforeColor; 
 
-            // Color BackColor = Color.FromArgb(51, 153, 153),Color foreColor = Color.FromName("Window")
-            //Color defaultBackColor = Color.FromArgb(51, 153, 153);
-            //Color defaultforeColor = Color.FromName("Window");
         }
-        // 重载 
             /// <example>
             /// 提供2个颜色值，用于Label_info 背景颜色与文字颜色
             /// </example>
@@ -388,8 +353,8 @@ namespace rapid2Controler
 
         public void button_data_Click(object sender, EventArgs e)
         {
-            tool = controller.MotionSystem.ActiveMechanicalUnit.Tool; // 获取当前工具
-            w = controller.MotionSystem.ActiveMechanicalUnit.WorkObject; // 获取工具坐标系
+            tool = motion.ActiveMechanicalUnit.Tool; // 获取当前工具
+            w = motion.ActiveMechanicalUnit.WorkObject; // 获取工具坐标系
             // 转化为工具坐标和坐标系
            //toolData = (ToolData)tool.Data;
            //wobjData = (WobjData)w.Data; 
@@ -410,20 +375,15 @@ namespace rapid2Controler
             else { System.Diagnostics.Process.Start(CodePath); }
         }
 
-        // 承载OnGiveFeedback(GiveFeedbackEventArgs gfbevent)
-        private void textBox_path_GiveFeedback(object sender, GiveFeedbackEventArgs e)
-        {
-            e.UseDefaultCursors = false;
-            Mouse.SetCursor(System.Windows.Input.Cursors.Hand);
-        }
-
-
+        // 正在施工·······
         public void Controller_StateChanged(object sender, StateChangedEventArgs e)
             {
-                StateChangedEventArgs args;
-                args = e;
-                label_controllerState.Text = args.NewState.ToString();
+              //  label_controllerState.Text = e.NewState.ToString();
             }
-        
+
+        private void label_controllerState_Click(object sender, EventArgs e)
+        {
+            // Controller_StateChanged
+        }
     }
 }

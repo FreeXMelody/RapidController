@@ -35,7 +35,6 @@
             this.openFileDialog_rapid = new System.Windows.Forms.OpenFileDialog();
             this.button_updata = new System.Windows.Forms.Button();
             this.textBox_path = new System.Windows.Forms.TextBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
             this.label2_INFO = new System.Windows.Forms.Label();
             this.listBox2_fileStore = new System.Windows.Forms.ListBox();
             this.button1 = new System.Windows.Forms.Button();
@@ -172,22 +171,6 @@
             this.textBox_path.Text = "当前路径 < 准备中";
             this.textBox_path.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBox_path.DragEnter += new System.Windows.Forms.DragEventHandler(this.textBox_path_DragEnter);
-            this.textBox_path.GiveFeedback += new System.Windows.Forms.GiveFeedbackEventHandler(this.textBox_path_GiveFeedback);
-            // 
-            // listBox1
-            // 
-            this.listBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-            this.listBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.listBox1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.listBox1.ForeColor = System.Drawing.Color.White;
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.HorizontalScrollbar = true;
-            this.listBox1.ItemHeight = 21;
-            this.listBox1.Location = new System.Drawing.Point(227, 76);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(210, 149);
-            this.listBox1.TabIndex = 6;
-            this.listBox1.Visible = false;
             // 
             // label2_INFO
             // 
@@ -493,7 +476,6 @@
             this.panel2.Controls.Add(this.button_updata);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.button_connect);
-            this.panel2.Controls.Add(this.listBox1);
             this.panel2.Location = new System.Drawing.Point(181, 12);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(454, 241);
@@ -630,6 +612,7 @@
             this.label_controllerState.Size = new System.Drawing.Size(104, 17);
             this.label_controllerState.TabIndex = 9;
             this.label_controllerState.Text = "当前控制器状态：";
+            this.label_controllerState.Click += new System.EventHandler(this.label_controllerState_Click);
             // 
             // panel_sonForm
             // 
@@ -677,7 +660,6 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog_rapid;
         private System.Windows.Forms.Button button_updata;
         private System.Windows.Forms.TextBox textBox_path;
-        private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.ListBox listBox2_fileStore;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
