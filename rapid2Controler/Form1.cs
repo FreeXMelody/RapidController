@@ -167,7 +167,7 @@ namespace rapid2Controler
             }
             return false;
         }
-        private void button_connect_Click(object sender, EventArgs e)
+        public void button_connect_Click(object sender, EventArgs e)
         {
             // 连接到示教器
             connectController();
