@@ -32,7 +32,6 @@ namespace rapid2Controler
         public Color defaultforeColor = Color.FromName("Window");
         public ControllerInfo controllerInfos1;
         public int ALLdg;
-        //   private EventHandler<StateChangedEventArgs> controller_StateChanged;
        public  Tool tool; // 获取当前工具
         public  WorkObject w; // 获取工具坐标系
          // 转化为工具坐标和坐标系
@@ -111,12 +110,6 @@ namespace rapid2Controler
             listView1.Items.Clear();
             foreach (ControllerInfo info in controllers)
             {
-                //listView1.Text = info.SystemName;
-                //listView1.Items[i].SubItems[1].Text = info.IPAddress.ToString();
-                //listView1.Items[i].SubItems[2].Text = info.ControllerName;
-                //listView1.Items[i].SubItems[3].Text = info.Version.ToString();
-                //listView1.Items[i].SubItems[4].Text = info.SystemId.ToString();
-
                 // INDEX: SysName/ IP / ControllerName / SysInfo  / ID
                 listViewItem1.Text = (info.SystemName); // 第一列
                 listViewItem1.SubItems.Add(info.IPAddress.ToString());
@@ -133,7 +126,7 @@ namespace rapid2Controler
             {
                 if (listView1.SelectedItems[0].SubItems[4].Text == info.SystemId.ToString())
                 {
-                    // if avalibility.available 可获性
+                    // 可获性
                     if (info.Availability == Availability.Available)
                     {
                         if (controller != null) // 登出
@@ -177,7 +170,6 @@ namespace rapid2Controler
         private void button_updata_Click(object sender, EventArgs e)
         {
             scanNetwork();
-            // label1.Text =" IP扫描结果："+listBox1.Items.Count.ToString();
             label1.Text = " IP扫描结果：" + listView1.Items.Count.ToString() ;
         }
 
@@ -185,7 +177,6 @@ namespace rapid2Controler
         {
             listBox2_fileStore.Items.Clear(); // 清空，重置
             // 取得多个文件及其目录
-             // controller.FileSystem.
             ControllerFileSystemInfo[] Anarray; // 建立数组
             Anarray = controller.FileSystem.GetFilesAndDirectories("*"); // 匹配所有文件及其目录
             for (int i = 0; i < Anarray.Length; i++)
@@ -202,11 +193,8 @@ namespace rapid2Controler
         {
             try { 
                 controller.FileSystem.RemoveFile(listBox2_fileStore.SelectedItem.ToString());   // 实际控制器目录 listBox2_fileStore.SelectedItem.ToString()
-               // label2_INFO.Text = "文件已删除，其文件名："+ listBox2_fileStore.SelectedItem.ToString();
-                
-                
                 label2_INFO.Text = "文件已删除，其文件名：" + listBox2_fileStore.SelectedItem.ToString() + "---" + $"文件列表已刷新";
-                this.button1_Click(null,null); // 刷新
+                this.button1_Click(null, null); // 刷新
                 setInfoColor(Color.FromArgb(30, 144, 255), Color.FromArgb(248, 248, 255));
             }
             catch (NullReferenceException ex) { label2_INFO.Text = (ex.Message + "....删除失败！"); setInfoColor(Color.FromArgb(205,38,38), Color.FromArgb(248, 248, 255)); }
@@ -412,7 +400,6 @@ namespace rapid2Controler
         private void button_fresh_Click(object sender, EventArgs e)
         {
             listBox_insertedCodelist.Items.Clear();
-            // CodePath.Replace(@"\", "/");
             string[] files = Directory.GetFiles(InsertedCodePath,"*");
             foreach (string item in files)
             {

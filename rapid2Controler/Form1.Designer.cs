@@ -683,9 +683,9 @@
             this.label_controllerState.ForeColor = System.Drawing.SystemColors.Window;
             this.label_controllerState.Location = new System.Drawing.Point(3, 24);
             this.label_controllerState.Name = "label_controllerState";
-            this.label_controllerState.Size = new System.Drawing.Size(104, 17);
+            this.label_controllerState.Size = new System.Drawing.Size(162, 17);
             this.label_controllerState.TabIndex = 9;
-            this.label_controllerState.Text = "当前控制器状态：";
+            this.label_controllerState.Text = "<预实现> 当前控制器状态：";
             this.label_controllerState.Click += new System.EventHandler(this.label_controllerState_Click);
             // 
             // panel_sonForm
