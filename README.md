@@ -1,7 +1,7 @@
 # <font color=#2E383A> RapidController 上位机开发，简化示教器操作</font>
 
 
-< center>![Logo](https://github.com/FreeXMelody/RapidController/tree/master/ReadMe/logo.png)< /center>
+![Logo](https://github.com/FreeXMelody/RapidController/blob/master/ReadMe/logo.png)
 
 ------
 
