@@ -13,6 +13,9 @@
 还有许多功能待以实现····
 
 ### 📖 参考资料：
-- 个人博客: https://fxlabtinystar.cn/2020/09/10/PCSDK-link/（未更新，代码是初始版本）
+- 个人博客: https://fxlabtinystar.cn/2020/09/10/PCSDK-link/   
+
+  （未更新，代码是初始版本）
+
 - 官方开发文档
 
