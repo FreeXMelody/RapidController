@@ -40,7 +40,6 @@ namespace rapid2Controler
 
         // 插入代码段
         public string InsertedCodePath = Application.StartupPath + @"\InsertedCode\";
-
         public Form1()
         {
           //   controller.StateChanged += new EventHandler<StateChangedEventArgs>(Controller_StateChanged);
@@ -70,7 +69,7 @@ namespace rapid2Controler
 
         private void button_update_Click(object sender, EventArgs e)    // 上传文件
         {
-            // 更新文件 & 将mod文件上传到示教器
+            // 更新文件 & 将mod文件上传到控制器
             if (textBox_path.Text == "")
             { MessageBox.Show("文件为空，你是不是还没有选择上传文件呢？"); return; }
             try
@@ -176,16 +175,14 @@ namespace rapid2Controler
         private void button1_Click(object sender, EventArgs e)
         {
             listBox2_fileStore.Items.Clear(); // 清空，重置
-            // 取得多个文件及其目录
             ControllerFileSystemInfo[] Anarray; // 建立数组
             Anarray = controller.FileSystem.GetFilesAndDirectories("*"); // 匹配所有文件及其目录
             for (int i = 0; i < Anarray.Length; i++)
             {
-                listBox2_fileStore.Items.Add(Anarray[i].FullName.Split('/').Last());  // listbox插入项： 只显示：只取文件名+后缀
+                listBox2_fileStore.Items.Add(Anarray[i].FullName.Split('/').Last()); 
             }
             ALLdg = listBox2_fileStore.Items.Count;
-            label2_INFO.Text = $"扫描完毕，共发现文件{ALLdg}个";
-            // MessageBox.Show($"扫描完毕，共发现文件{ALLdg}个"); // 字符串内插 作提示 【换label_Info】作提示
+            label2_INFO.Text = $"扫描完毕，共发现文件{ALLdg}个"; // 字符串内插作提示
             setInfoColor(Color.FromArgb(30,144,255), Color.FromArgb(248, 248, 255));
         }
 
@@ -299,14 +296,11 @@ namespace rapid2Controler
 
         private void button6_Click(object sender, EventArgs e)
         {
-            //获取当前文件夹路径
             string currPath = Application.StartupPath;
-
-            //检查是否存在文件夹
             string subPath = currPath + "/CodeExported/";
             if (false == System.IO.Directory.Exists(subPath))
             {
-                //创建文件夹
+                //不存在则创建文件夹
                 System.IO.Directory.CreateDirectory(subPath);
             }
 
@@ -314,7 +308,6 @@ namespace rapid2Controler
 
             // 导出文件
             try {
-                 // MessageBox.Show(localDir);
                 controller.FileSystem.GetFile(listBox2_fileStore.SelectedItem.ToString(),localDir, true); 
                 label2_INFO.Text = "文件导出成功，文件名为："+ listBox2_fileStore.SelectedItem.ToString().Split('/').Last() +"  目录："+localDir;
                 setInfoColor(Color.FromArgb(153, 204, 102), Color.FromArgb(248, 248, 255));
@@ -409,8 +402,9 @@ namespace rapid2Controler
 
         private void button_insert_Click(object sender, EventArgs e)
         {
-            ReplaceValue(textBox_path.Text.Replace("//", @"\"),listBox_insertedCodelist.SelectedItem.ToString().Split('.').First(),File.ReadAllText(InsertedCodePath+ listBox_insertedCodelist.SelectedItem.ToString()));
-            label2_INFO.Text = "代码段已插入" ;
+            ReplaceValue(textBox_path.Text.Replace("//", @"\"),listBox_insertedCodelist.SelectedItem.ToString().Split('.').First());
+            // NewValue :  File.ReadAllText(InsertedCodePath + listBox_insertedCodelist.SelectedItem.ToString());
+             label2_INFO.Text = "代码段已插入" ;
             setInfoColor(Color.FromArgb(30, 144, 255), Color.FromArgb(248, 248, 255));
         }
 
@@ -419,21 +413,59 @@ namespace rapid2Controler
         /// </summary>
         /// <param name="strFilePath">txt等文件的路径</param>
         /// <param name="strIndex">索引的字符串，定位到某一行</param>
-        /// <param name="newValue">替换新值</param>
-        private void ReplaceValue(string strFilePath, string strIndex, string newValue)
+        private void ReplaceValue(string strFilePath, string strIndex)
         {
+            int varLine = 0;
+            int endvarLine = 0;
+            string varriable = "";
+            string newValue = "";
+            int moduleLine = 0;
             if (File.Exists(strFilePath))
             {
                 string[] lines = System.IO.File.ReadAllLines(strFilePath);
-                for (int i = 0; i < lines.Length; i++)
+                string[] lines2 = System.IO.File.ReadAllLines(InsertedCodePath + listBox_insertedCodelist.SelectedItem.ToString());
+                // var 行处理
+                if (checkBox_InsertVar.Checked == true)
                 {
-                    if (lines[i].Contains("!" + strIndex))
+                    for (int i = 0; i < lines2.Length; i++)
                     {
-                        lines[i] = newValue;
+                        if (lines2[i].Contains("var:")) { varLine = i; }
+                        if (lines2[i].Contains("endvar;")) { endvarLine = i; }
+                    }
+                    // get var array from lines2
+                    for (int a = varLine + 1; a < endvarLine; a++)
+                    {
+                        varriable = varriable + lines2[a] + "\n";
                     }
                 }
+                // init newValue from lines2
+                for (int i = endvarLine + 1; i < lines2.Length; i++)
+                {
+                    newValue = newValue + lines2[i] + "\n";
+                }
+                for (int a = 0; a < lines.Length; a++)
+                {
+                    // 欲写变量 获取module行索引 变量写其下
+                    if (checkBox_InsertVar.Checked == true)
+                    {
+                        if (lines[a].Contains("MODULE"))
+                        {
+                            if (lines[a].Contains("ENDMODULE")) { continue; }  // 避免
+                            Console.WriteLine("MODULE LINE:" + a);
+                            moduleLine = a;
+                            lines[moduleLine + 1] = varriable;
+                        }
+                    }
+                    if (lines[a].Contains("!" + strIndex))
+                    {// 替换 + 插入 新值
+                        lines[a] = newValue;
+                    }
+                }
+                // ---------------------------------分割-------------------------------
                 File.WriteAllLines(strFilePath, lines);
             }
         }
+
+
     }
 }

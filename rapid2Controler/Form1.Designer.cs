@@ -74,6 +74,7 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.label_controllerState = new System.Windows.Forms.Label();
             this.panel_sonForm = new System.Windows.Forms.Panel();
+            this.checkBox_InsertVar = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -535,6 +536,7 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.checkBox_InsertVar);
             this.panel3.Controls.Add(this.checkBox_storePath);
             this.panel3.Controls.Add(this.groupBox1);
             this.panel3.Controls.Add(this.button7);
@@ -695,6 +697,19 @@
             this.panel_sonForm.Size = new System.Drawing.Size(146, 143);
             this.panel_sonForm.TabIndex = 19;
             // 
+            // checkBox_InsertVar
+            // 
+            this.checkBox_InsertVar.AutoSize = true;
+            this.checkBox_InsertVar.Checked = true;
+            this.checkBox_InsertVar.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_InsertVar.Font = new System.Drawing.Font("微软雅黑", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.checkBox_InsertVar.Location = new System.Drawing.Point(7, 389);
+            this.checkBox_InsertVar.Name = "checkBox_InsertVar";
+            this.checkBox_InsertVar.Size = new System.Drawing.Size(87, 20);
+            this.checkBox_InsertVar.TabIndex = 18;
+            this.checkBox_InsertVar.Text = "允许插入变量";
+            this.checkBox_InsertVar.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -774,6 +789,7 @@
         private System.Windows.Forms.Button button_fresh;
         private System.Windows.Forms.Button button_insert;
         private System.Windows.Forms.CheckBox checkBox_storePath;
+        private System.Windows.Forms.CheckBox checkBox_InsertVar;
     }
 }
 
