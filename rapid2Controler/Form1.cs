@@ -439,7 +439,7 @@ namespace rapid2Controler
                     }
                 }
                 // init newValue from lines2
-                for (int i = endvarLine + 1; i < lines2.Length; i++)
+                for (int i = endvarLine; i < lines2.Length; i++)
                 {
                     newValue = newValue + lines2[i] + "\n";
                 }
