@@ -120,6 +120,7 @@
     <Compile Include="dataMonitor.Designer.cs">
       <DependentUpon>dataMonitor.cs</DependentUpon>
     </Compile>
+    <Compile Include="DirectoriesControl.cs" />
     <Compile Include="sf_controllerWin.cs">
       <SubType>Form</SubType>
     </Compile>

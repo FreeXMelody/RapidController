@@ -63,6 +63,7 @@
             this.columnHeader4_sysInfo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5_ControllerID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel3 = new System.Windows.Forms.Panel();
+            this.checkBox_InsertVar = new System.Windows.Forms.CheckBox();
             this.checkBox_storePath = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button_fresh = new System.Windows.Forms.Button();
@@ -74,7 +75,6 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.label_controllerState = new System.Windows.Forms.Label();
             this.panel_sonForm = new System.Windows.Forms.Panel();
-            this.checkBox_InsertVar = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -553,6 +553,19 @@
             this.panel3.Size = new System.Drawing.Size(450, 487);
             this.panel3.TabIndex = 17;
             // 
+            // checkBox_InsertVar
+            // 
+            this.checkBox_InsertVar.AutoSize = true;
+            this.checkBox_InsertVar.Checked = true;
+            this.checkBox_InsertVar.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_InsertVar.Font = new System.Drawing.Font("微软雅黑", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.checkBox_InsertVar.Location = new System.Drawing.Point(7, 389);
+            this.checkBox_InsertVar.Name = "checkBox_InsertVar";
+            this.checkBox_InsertVar.Size = new System.Drawing.Size(87, 20);
+            this.checkBox_InsertVar.TabIndex = 18;
+            this.checkBox_InsertVar.Text = "允许插入变量";
+            this.checkBox_InsertVar.UseVisualStyleBackColor = true;
+            // 
             // checkBox_storePath
             // 
             this.checkBox_storePath.AutoSize = true;
@@ -685,9 +698,9 @@
             this.label_controllerState.ForeColor = System.Drawing.SystemColors.Window;
             this.label_controllerState.Location = new System.Drawing.Point(3, 24);
             this.label_controllerState.Name = "label_controllerState";
-            this.label_controllerState.Size = new System.Drawing.Size(162, 17);
+            this.label_controllerState.Size = new System.Drawing.Size(114, 17);
             this.label_controllerState.TabIndex = 9;
-            this.label_controllerState.Text = "<预实现> 当前控制器状态：";
+            this.label_controllerState.Text = " <当前控制器状态>";
             this.label_controllerState.Click += new System.EventHandler(this.label_controllerState_Click);
             // 
             // panel_sonForm
@@ -696,19 +709,6 @@
             this.panel_sonForm.Name = "panel_sonForm";
             this.panel_sonForm.Size = new System.Drawing.Size(146, 143);
             this.panel_sonForm.TabIndex = 19;
-            // 
-            // checkBox_InsertVar
-            // 
-            this.checkBox_InsertVar.AutoSize = true;
-            this.checkBox_InsertVar.Checked = true;
-            this.checkBox_InsertVar.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_InsertVar.Font = new System.Drawing.Font("微软雅黑", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.checkBox_InsertVar.Location = new System.Drawing.Point(7, 389);
-            this.checkBox_InsertVar.Name = "checkBox_InsertVar";
-            this.checkBox_InsertVar.Size = new System.Drawing.Size(87, 20);
-            this.checkBox_InsertVar.TabIndex = 18;
-            this.checkBox_InsertVar.Text = "允许插入变量";
-            this.checkBox_InsertVar.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 

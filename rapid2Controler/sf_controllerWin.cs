@@ -13,39 +13,59 @@ using ABB.Robotics.Controllers;
 using ABB.Robotics.Controllers.Discovery;
 using ABB.Robotics.Controllers.EventLogDomain;
 using ABB.Robotics.Controllers.FileSystemDomain;
-
 namespace rapid2Controler
 {
     public partial class sf_controllerWin : Form
     {
-        public Controller controllerA = null;
-        private ControllerInfo info;
+        public Form1 form1;
+        public static Controller controllerA ;
         public sf_controllerWin()
         {
+
             InitializeComponent();
+            controllerA = Form1.controller;
         }
 
         private void button_updata_Click(object sender, EventArgs e)    // 重启控制器
         {
-                Form1 form1 = new Form1();  // 调用form1的字段和控件 
-                controllerA = form1.controller;
-            if (info.Availability == Availability.Available)
-            {
-                try { controllerA.Restart(ControllerStartMode.SStart);}
-                catch (System.NullReferenceException ex)
-                { MessageBox.Show(ex.Message + "发生异常"); }
-                finally
+
+                try {
+                if (MessageBox.Show("确认重启？此操作不可撤销····", "重启提示", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                 {
-                    MessageBox.Show("controller状态:" + controllerA.ToString());
-                    if (MessageBox.Show("确认重启？此操作不可撤销····", "重启提示", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
-                    {
-                        controllerA.Restart(ControllerStartMode.SStart);
-                        form1.label2_INFO.Text = "重启控制器完毕。";
-                        form1.setInfoColor(Color.FromArgb(153, 204, 102), Color.FromArgb(248, 248, 255));
-                    }
+                    controllerA.Restart(ControllerStartMode.Warm);
+                    form1.label2_INFO.Text = "重启控制器完毕。";
+                    form1.setInfoColor(Color.FromArgb(153, 204, 102), Color.FromArgb(248, 248, 255));
                 }
             }
+            catch (System.Exception ex)
+                { MessageBox.Show(ex.Message + "发生异常"); }
             //try { form1.controller.Restart(0); } catch (System.NullReferenceException ex) { MessageBox.Show(ex.Message + "重启失败","发生异常",MessageBoxButtons.OK,MessageBoxIcon.Error); } }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string DirectoryName = "/ModuleLib";
+            string localFileLibPath = Application.StartupPath + "/" + DirectoryName+ "/";//  加反斜杠
+
+            string homePath = controllerA.FileSystem.RemoteDirectory;
+            // Console.WriteLine(root);
+            // path：/hd0a/120-504462/HOME
+            if (false == DirectoriesControl.CheckDirectoryExists(DirectoryName, 0))
+            {
+                controllerA.FileSystem.CreateDirectory(DirectoryName);
+                MessageBox.Show("检查到目录不存在，当前已初始化完毕，重新执行以开始····");
+            }
+            else 
+            { 
+                
+
+
+            }
+
+
+       }
+
+       
+
     }
 }

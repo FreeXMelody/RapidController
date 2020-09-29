@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -23,8 +24,7 @@ namespace rapid2Controler
     public partial class Form1 : Form
     {
         public NetworkScanner scanner ;
-        public Controller controller ;
-        public MotionSystem motion;
+        public static Controller controller ;
         public string fileName = "";
         public const string Prefix = "";
         public bool activeForm = false;
@@ -32,14 +32,16 @@ namespace rapid2Controler
         public Color defaultforeColor = Color.FromName("Window");
         public ControllerInfo controllerInfos1;
         public int ALLdg;
-       public  Tool tool; // 获取当前工具
-        public  WorkObject w; // 获取工具坐标系
+       public static  Tool tool; // 获取当前工具
+        public static WorkObject w; // 获取工具坐标系
          // 转化为工具坐标和坐标系
         public ToolData toolData;
         public WobjData wobjData;
 
         // 插入代码段
         public string InsertedCodePath = Application.StartupPath + @"\InsertedCode\";
+        // 记录sonform_text
+        public string sonformText;
         public Form1()
         {
           //   controller.StateChanged += new EventHandler<StateChangedEventArgs>(Controller_StateChanged);
@@ -141,14 +143,11 @@ namespace rapid2Controler
                         else // 登入
                         {
                           //   Controller.Connect(info.SystemId,ConnectionType.Standalone);
-                             this.controller = ControllerFactory.CreateFrom(info);
+                             controller = ControllerFactory.CreateFrom(info);
                             controller.Logon(UserInfo.DefaultUser);
-
-                            controllerInfos1 = info;
                             Text ="当前已连接：" + listView1.SelectedItems[0].Text;
                             label2_INFO.Text = "已连接。";
                             setInfoColor();
-                            motion = controller.MotionSystem;   // 测试
                             button_connect.Text = "     断开";
                             return true;
                         }
@@ -163,7 +162,7 @@ namespace rapid2Controler
         {
             // 连接到示教器
             connectController();
-            motion = controller.MotionSystem;
+            label_controllerState.Text = "当前控制器状态：" + controller.State.ToString();
         }
 
         private void button_updata_Click(object sender, EventArgs e)
@@ -188,9 +187,14 @@ namespace rapid2Controler
 
         private void button2_Click(object sender, EventArgs e)
         {
-            try { 
-                controller.FileSystem.RemoveFile(listBox2_fileStore.SelectedItem.ToString());   // 实际控制器目录 listBox2_fileStore.SelectedItem.ToString()
-                label2_INFO.Text = "文件已删除，其文件名：" + listBox2_fileStore.SelectedItem.ToString() + "---" + $"文件列表已刷新";
+            string selectFileName = listBox2_fileStore.SelectedItem.ToString();
+            try
+            {
+                if (true == DirectoriesControl.IsDirectory(selectFileName))
+                { controller.FileSystem.RemoveDirectory(selectFileName); }
+                else { controller.FileSystem.RemoveFile(selectFileName);
+            }  // 实际控制器目录 listBox2_fileStore.SelectedItem.ToString()
+                label2_INFO.Text = "文件已删除，其文件(夹)名：" + selectFileName + "---" + $"文件列表已刷新";
                 this.button1_Click(null, null); // 刷新
                 setInfoColor(Color.FromArgb(30, 144, 255), Color.FromArgb(248, 248, 255));
             }
@@ -255,17 +259,35 @@ namespace rapid2Controler
 
         private void listBox2_fileStore_SelectedIndexChanged(object sender, EventArgs e)
         {
-            label2_INFO.Text = "当前选中目录："+listBox2_fileStore.SelectedItem.ToString();
+            label2_INFO.Text = "当前选中文件(夹)："+listBox2_fileStore.SelectedItem.ToString();
                 setInfoColor();
         }
 
         private void button_ioWinShow_Click(object sender, EventArgs e)
         {
-            activeWindow(new sf_InputOutput()); // 直接activeWindow调用方法
+            activeWindow(new sf_InputOutput()); 
         }
 
         public void activeWindow(Form form) // 激活窗口方法 form 参数传入： new + form();
         {
+            //Control control1 = new Control();
+            //// StackTrace 进行反射跟踪
+            //StackTrace trace = new StackTrace();
+            // string MethodName = (trace.GetFrame(1).GetMethod().Name); // 事件名
+
+            //// string MethodName = (trace.GetFrame(1).GetMethod().Module.Name); // get process Name
+            //// string MethodName = (trace.GetFrame(1).GetMethod().DeclaringType.Name); // 获取了Form1
+            //Console.WriteLine(MethodName);
+            //foreach (Control control  in this.Controls)
+            //{
+            //    if (control.Name == MethodName)
+            //    {
+                    
+            //        control1 = control;
+            //    }
+            //}
+            
+
             panel2.Visible = false;
             panel3.Visible = false;
 
@@ -350,8 +372,9 @@ namespace rapid2Controler
 
         public void button_data_Click(object sender, EventArgs e)
         {
-            tool = motion.ActiveMechanicalUnit.Tool; // 获取当前工具
-            w = motion.ActiveMechanicalUnit.WorkObject; // 获取工具坐标系
+            // TODO:待调试·· Motion
+            tool = controller.MotionSystem.ActiveMechanicalUnit.Tool; // 获取当前工具
+            w = controller.MotionSystem.ActiveMechanicalUnit.WorkObject; // 获取工具坐标系
             // 转化为工具坐标和坐标系
            //toolData = (ToolData)tool.Data;
            //wobjData = (WobjData)w.Data; 
@@ -380,6 +403,7 @@ namespace rapid2Controler
 
         private void label_controllerState_Click(object sender, EventArgs e)
         {
+            label_controllerState.Text ="当前控制器状态："+  controller.State.ToString();
             // Controller_StateChanged
         }
         public void checkVisibleSonForm()

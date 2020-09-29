@@ -21,15 +21,13 @@ namespace rapid2Controler
     public partial class dataMonitor : Form //   :Form 继承Form1
     {
         // Controller.Connect()
-        Form1 Mainform;
-        Tool tool1;
-        WorkObject w1;
+        public Tool tool1 ;
+        public WorkObject w1;
         public dataMonitor()
         {
             InitializeComponent();
-            Mainform = new Form1();
-            tool1 = Mainform.tool;
-            w1 = Mainform.w;
+            tool1 = Form1.tool;
+            w1 = Form1.w;
         }
 
         private void button1_Click(object sender, EventArgs e)
