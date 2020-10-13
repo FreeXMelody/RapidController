@@ -27,8 +27,8 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>1</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <ApplicationRevision>3</ApplicationRevision>
+    <ApplicationVersion>1.1.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -121,6 +121,7 @@
       <DependentUpon>dataMonitor.cs</DependentUpon>
     </Compile>
     <Compile Include="DirectoriesControl.cs" />
+    <Compile Include="ctrlCore.cs" />
     <Compile Include="sf_controllerWin.cs">
       <SubType>Form</SubType>
     </Compile>

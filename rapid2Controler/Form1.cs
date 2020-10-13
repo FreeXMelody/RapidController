@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
@@ -34,20 +35,21 @@ namespace rapid2Controler
         public int ALLdg;
        public static  Tool tool; // 获取当前工具
         public static WorkObject w; // 获取工具坐标系
-         // 转化为工具坐标和坐标系
-        public ToolData toolData;
-        public WobjData wobjData;
-
+        // 转化为工具坐标和坐标系
+        public static ToolData toolData;
+        public static WobjData wobjData;
         // 插入代码段
         public string InsertedCodePath = Application.StartupPath + @"\InsertedCode\";
         // 记录sonform_text
         public string sonformText;
+        // get task
+        public ABB.Robotics.Controllers.RapidDomain.Task tRob1;
+        public ABB.Robotics.Controllers.RapidDomain.Task[] aTask;
         public Form1()
         {
-          //   controller.StateChanged += new EventHandler<StateChangedEventArgs>(Controller_StateChanged);
             InitializeComponent();
             this.Size = new Size(712, 543);
-            button_min.Location = new Point(0, button4.Location.Y - 41);
+            button_min.Location = new Point(0, button_exit.Location.Y - 41);
             panel2.Visible = false;
             panel3.Visible = false;
         }
@@ -111,16 +113,17 @@ namespace rapid2Controler
             listView1.Items.Clear();
             foreach (ControllerInfo info in controllers)
             {
-                // INDEX: SysName/ IP / ControllerName / SysInfo  / ID
+                // INDEX: SysName/ IP / ControllerName / SysInfo  / ID / Port
                 listViewItem1.Text = (info.SystemName); // 第一列
                 listViewItem1.SubItems.Add(info.IPAddress.ToString());
                 listViewItem1.SubItems.Add(info.ControllerName);
                 listViewItem1.SubItems.Add(info.Version.ToString());
                 listViewItem1.SubItems.Add(info.SystemId.ToString());
+                listViewItem1.SubItems.Add(info.WebServicesPort.ToString());
                 listView1.Items.Add(listViewItem1);
             }
         }
-        public bool connectController()
+        public void connectController()
         {
             ControllerInfoCollection controllerInfos = scanner.Controllers;
             foreach (ControllerInfo info in controllerInfos)
@@ -138,31 +141,27 @@ namespace rapid2Controler
                             controller.Dispose(); // 释放资源
                             controller = null;
                             button_connect.Text = "     连接";
-                            return false;
                         }
                         else // 登入
                         {
-                          //   Controller.Connect(info.SystemId,ConnectionType.Standalone);
-                             controller = ControllerFactory.CreateFrom(info);
+                            //   Controller.Connect(info.SystemId,ConnectionType.Standalone);
+                            controller = ControllerFactory.CreateFrom(info);
                             controller.Logon(UserInfo.DefaultUser);
-                            Text ="当前已连接：" + listView1.SelectedItems[0].Text;
+                            Text = "当前已连接：" + listView1.SelectedItems[0].Text;
                             label2_INFO.Text = "已连接。";
                             setInfoColor();
                             button_connect.Text = "     断开";
-                            return true;
                         }
                     }
-                    else { return false; }
+                    else { }
                 }
-                else { return false; }
             }
-            return false;
         }
         public void button_connect_Click(object sender, EventArgs e)
         {
             // 连接到示教器
             connectController();
-            label_controllerState.Text = "当前控制器状态：" + controller.State.ToString();
+        label_controllerState.Text = "当前控制器状态：" + controller.State.ToString();
         }
 
         private void button_updata_Click(object sender, EventArgs e)
@@ -181,7 +180,7 @@ namespace rapid2Controler
                 listBox2_fileStore.Items.Add(Anarray[i].FullName.Split('/').Last()); 
             }
             ALLdg = listBox2_fileStore.Items.Count;
-            label2_INFO.Text = $"扫描完毕，共发现文件{ALLdg}个"; // 字符串内插作提示
+            label2_INFO.Text = $"扫描完毕，共发现文件{ALLdg}个"; 
             setInfoColor(Color.FromArgb(30,144,255), Color.FromArgb(248, 248, 255));
         }
 
@@ -193,7 +192,7 @@ namespace rapid2Controler
                 if (true == DirectoriesControl.IsDirectory(selectFileName))
                 { controller.FileSystem.RemoveDirectory(selectFileName); }
                 else { controller.FileSystem.RemoveFile(selectFileName);
-            }  // 实际控制器目录 listBox2_fileStore.SelectedItem.ToString()
+            }  // 控制器绝对路径 listBox2_fileStore.SelectedItem.ToString()
                 label2_INFO.Text = "文件已删除，其文件(夹)名：" + selectFileName + "---" + $"文件列表已刷新";
                 this.button1_Click(null, null); // 刷新
                 setInfoColor(Color.FromArgb(30, 144, 255), Color.FromArgb(248, 248, 255));
@@ -268,26 +267,8 @@ namespace rapid2Controler
             activeWindow(new sf_InputOutput()); 
         }
 
-        public void activeWindow(Form form) // 激活窗口方法 form 参数传入： new + form();
+        public void activeWindow(Form form) // 激活窗口方法 form 参数传入： new form();
         {
-            //Control control1 = new Control();
-            //// StackTrace 进行反射跟踪
-            //StackTrace trace = new StackTrace();
-            // string MethodName = (trace.GetFrame(1).GetMethod().Name); // 事件名
-
-            //// string MethodName = (trace.GetFrame(1).GetMethod().Module.Name); // get process Name
-            //// string MethodName = (trace.GetFrame(1).GetMethod().DeclaringType.Name); // 获取了Form1
-            //Console.WriteLine(MethodName);
-            //foreach (Control control  in this.Controls)
-            //{
-            //    if (control.Name == MethodName)
-            //    {
-                    
-            //        control1 = control;
-            //    }
-            //}
-            
-
             panel2.Visible = false;
             panel3.Visible = false;
 
@@ -300,7 +281,6 @@ namespace rapid2Controler
                 activeForm = false;
 
             }
-            // else if 
             else
             {
                 ShowForm(form, panel_sonForm);
@@ -361,24 +341,30 @@ namespace rapid2Controler
             this.label2_INFO.ForeColor = defaultforeColor; 
 
         }
-            /// <example>
-            /// 提供2个颜色值，用于Label_info 背景颜色与文字颜色
-            /// </example>
+        /// <summary>
+        /// 设定提示标签颜色，提供2个Color参数值
+        /// </summary>
+        /// <param name="para_BackColor">背景色</param>
+        /// <param name="para_foreColor">前景色</param>
         public void setInfoColor(Color para_BackColor,Color para_foreColor)
         {
+           
             this.label2_INFO.BackColor = para_BackColor;
             this.label2_INFO.ForeColor = para_foreColor; 
         }
 
         public void button_data_Click(object sender, EventArgs e)
         {
-            // TODO:待调试·· Motion
-            tool = controller.MotionSystem.ActiveMechanicalUnit.Tool; // 获取当前工具
-            w = controller.MotionSystem.ActiveMechanicalUnit.WorkObject; // 获取工具坐标系
-            // 转化为工具坐标和坐标系
-           //toolData = (ToolData)tool.Data;
-           //wobjData = (WobjData)w.Data; 
-            activeWindow(new dataMonitor()) ;
+            // 获取当前tool 与 wobj
+            try
+            {
+                tool = controller.MotionSystem.ActiveMechanicalUnit.Tool;
+                w = controller.MotionSystem.ActiveMechanicalUnit.WorkObject;
+                toolData = (ToolData)tool.Data;
+                wobjData = (WobjData)w.Data;
+                activeWindow(new dataMonitor());
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message,"错误"); }
         }
 
         private void button7_Click(object sender, EventArgs e)
@@ -395,7 +381,7 @@ namespace rapid2Controler
             else { System.Diagnostics.Process.Start(CodePath); }
         }
 
-        // 正在施工·······
+        // TODO:  ControllerStateChangeEvent
         public void Controller_StateChanged(object sender, StateChangedEventArgs e)
             {
               //  label_controllerState.Text = e.NewState.ToString();
@@ -427,7 +413,6 @@ namespace rapid2Controler
         private void button_insert_Click(object sender, EventArgs e)
         {
             ReplaceValue(textBox_path.Text.Replace("//", @"\"),listBox_insertedCodelist.SelectedItem.ToString().Split('.').First());
-            // NewValue :  File.ReadAllText(InsertedCodePath + listBox_insertedCodelist.SelectedItem.ToString());
              label2_INFO.Text = "代码段已插入" ;
             setInfoColor(Color.FromArgb(30, 144, 255), Color.FromArgb(248, 248, 255));
         }
@@ -448,7 +433,7 @@ namespace rapid2Controler
             {
                 string[] lines = System.IO.File.ReadAllLines(strFilePath);
                 string[] lines2 = System.IO.File.ReadAllLines(InsertedCodePath + listBox_insertedCodelist.SelectedItem.ToString());
-                // var 行处理
+                // variable Line handle
                 if (checkBox_InsertVar.Checked == true)
                 {
                     for (int i = 0; i < lines2.Length; i++)
@@ -485,11 +470,153 @@ namespace rapid2Controler
                         lines[a] = newValue;
                     }
                 }
-                // ---------------------------------分割-------------------------------
+                // -----------------写入---------------------
                 File.WriteAllLines(strFilePath, lines);
+            }
+        }
+        
+        private void button_checkProgramm_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                tRob1 = controller.Rapid.GetTask("T_ROB1");
+                ReadOnlyCollection<ProgramError> errors = tRob1.CheckProgram().Errors;
+                if (errors == null)
+                { MessageBox.Show("哎哟不错喔，未检查到程序错误！"); }
+                else
+                {
+
+                    foreach (ProgramError programError in errors)
+                    {
+                        string taskName = programError.TaskName;
+                        string moduleName = programError.ModuleName;
+                        int Line = programError.Line;
+                        int column = programError.Column;
+                        MessageBox.Show($"(っ °Д °;)っ发现程序错误！\n Task:{taskName} \n 模块:{moduleName} \n 出现在第 {Line} 行 \n 第 {column} 列");
+                    }
+                }
+            }
+            catch (Exception ex)
+            { MessageBox.Show(ex.Message,"错误"); }
+        }
+
+        private void button_loadModule_Click(object sender, EventArgs e)
+        {
+            loadModule();
+        }
+
+        /// <summary>
+        /// 加载控制器上的rapid程序 --- 第二版？hhh
+        /// </summary>
+        void loadModule()
+        {
+            tRob1 = controller.Rapid.GetTask("T_ROB1");
+           
+            // aTask = controller.Rapid.GetTasks();
+            // string filePath = Path.ChangeExtension(ModuleFileName, ".prg");
+            try
+            {
+                string filePath = controller.FileSystem.GetRemotePath(listBox2_fileStore.SelectedItem.ToString());
+                Console.WriteLine("目录：" + filePath);
+                string ProgramFileName = Path.ChangeExtension(filePath, ".mod");
+ 
+                using (Mastership m = Mastership.Request(controller.Rapid))
+                {
+                    //  controller.FileSystem.RemoteDirectory = "(HOME)$";
+                    tRob1.LoadModuleFromFile(Path.GetFileName(filePath), ABB.Robotics.
+                    Controllers.RapidDomain.RapidLoadMode.Replace);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("发生异常," + ex.Message);
             }
         }
 
 
+        public void CtrlRestart(Controller ctrl)
+        {
+            ctrl.Logon(UserInfo.DefaultUser);
+            try
+            {
+                if (ctrl.OperatingMode == ControllerOperatingMode.Auto)
+                {
+                    using (Mastership.Request(ctrl))
+                    {
+                        ctrl.Restart(ControllerStartMode.Warm);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("需要打开自动模式");
+                }
+            }
+            catch (System.InvalidOperationException ex)
+            {
+                MessageBox.Show("Mastership problem." + ex.Message);
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show("Unexpected error occurred: " + ex.Message);
+            }
+            ctrl.Logoff();//should be unecessary since we get kicked out at restart.
+        }
+
+        private void button_resetPoint_Click(object sender, EventArgs e)
+        {
+            ctrlCore.RAPID_ProgramReset(controller, "T_ROB1");
+        }
+
+        /// <summary>
+        /// 加载rapid程序文件到控制器
+        /// </summary>
+        /*
+         public void LoadModuleFromFile()
+         {
+             try
+             {
+                 // Step 1: Connect to the controller 略
+                 // Clears the eventlogs in the controller
+                 controller.EventLog.ClearAll();
+                 tRob1 = controller.Rapid.GetTask("T_ROB1");
+                 // 获取模块路径，控制器中与HOME目录合并
+                 string filePath = listBox2_fileStore.SelectedItem.ToString();
+                 // Path.Combine(controller.GetEnvironmentVariable("HOME"), listBox2_fileStore.SelectedItem.ToString());
+                 bool bLoadSuccess = false;
+
+                 // Step 3: Load Module 
+                 using (Mastership.Request(controller.Rapid))
+                 {
+                     // Loads a RAPID module to the task in the robot controller.
+                     bLoadSuccess = tRob1.LoadModuleFromFile(filePath, RapidLoadMode.Replace);
+                 }
+
+                 // True if loading succeeds without any errors, otherwise false. 
+                 if (!bLoadSuccess)
+                 {
+                     // Gets the available categories of the EventLog.
+                     foreach (EventLogCategory category in controller.EventLog.GetCategories())
+                     {
+                         if (category.Name == "Common")
+                         {
+                             if (category.Messages.Count > 0)
+                             {
+                                 foreach (EventLogMessage message in category.Messages)
+                                 {
+                                     Console.WriteLine("Program [{1}:{2}({0})] {3} {4}",
+                                         message.Name, message.SequenceNumber,
+                                         message.Timestamp, message.Title, message.Body);
+                                 }
+                             }
+                         }
+                     }
+                 }
+             }
+             catch (Exception ex)
+             {
+                 Console.WriteLine("加载程序时出现错误:{0}", ex.Message);
+             }
+         }
+  */
     }
 }

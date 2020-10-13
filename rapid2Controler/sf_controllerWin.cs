@@ -17,28 +17,26 @@ namespace rapid2Controler
 {
     public partial class sf_controllerWin : Form
     {
-        public Form1 form1;
-        public static Controller controllerA ;
+        Form1 form1 = new Form1();
+        public Controller controllerA ;
         public sf_controllerWin()
         {
 
             InitializeComponent();
             controllerA = Form1.controller;
+
         }
 
         private void button_updata_Click(object sender, EventArgs e)    // 重启控制器
         {
 
-                try {
                 if (MessageBox.Show("确认重启？此操作不可撤销····", "重启提示", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                 {
-                    controllerA.Restart(ControllerStartMode.Warm);
+                    form1.CtrlRestart(controllerA);
+                    // controllerA.Restart();
                     form1.label2_INFO.Text = "重启控制器完毕。";
                     form1.setInfoColor(Color.FromArgb(153, 204, 102), Color.FromArgb(248, 248, 255));
                 }
-            }
-            catch (System.Exception ex)
-                { MessageBox.Show(ex.Message + "发生异常"); }
             //try { form1.controller.Restart(0); } catch (System.NullReferenceException ex) { MessageBox.Show(ex.Message + "重启失败","发生异常",MessageBoxButtons.OK,MessageBoxIcon.Error); } }
         }
 

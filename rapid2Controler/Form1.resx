@@ -154,6 +154,16 @@
         cFQAAAAASUVORK5CYII=
 </value>
   </data>
+  <data name="button_checkProgramm.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAOtJREFUOE+N
+        kz0OgkAUhDkDNWegM7RcwsQTUBBLe7mEtaWJJRfwBp7D2FuvM7uzun8EvmTC2/dmh4VAtYQxZoCu0qD2
+        NrBhglImjXMw3KlkXVt7mVo2+nqVdkHsHXDtoLPEk4Tq5LEnZG1B3UAvDfoV0UNvo+0ONFpoK622xWgY
+        4u8aIXuO5iHrAViPkH9JKcUA4P0nBszQQ/pAIUsB3j/rHA40npwGFANkz8Hs5iw/SgFv2XMwTN9DKeAi
+        ewwGRzc3d11JGsDnJnttc6BxcH0zas2T0OwDWPtP3Z/yH4IFf9nlvy2BXgiPUlVfH8Zr5BqLKpYAAAAA
+        SUVORK5CYII=
+</value>
+  </data>
   <data name="button_data.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAFJJREFUOE/t
@@ -1514,7 +1524,7 @@
         DQBKjKaDgQEMDAD+a2VQ+DgO6AAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="button4.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="button_exit.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAORJREFUOE+1
         kr8NglAYxBmBhhlMnIIlnMAtqJyBzglILCyMva2dA1hY0esEz/vxTsAA/kv8JZe8u+/4FPKSvxJC2CDb

@@ -40,6 +40,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button_checkProgramm = new System.Windows.Forms.Button();
             this.button_data = new System.Windows.Forms.Button();
             this.button_min = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
@@ -52,17 +53,21 @@
             this.button5 = new System.Windows.Forms.Button();
             this.button_ioWinShow = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.button_exit = new System.Windows.Forms.Button();
             this.button_ConnectMenu = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader1_sysName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2_ControllerIP = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3_ControllerName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4_sysInfo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5_ControllerID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6_Port = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel3 = new System.Windows.Forms.Panel();
+            this.button_loadModule = new System.Windows.Forms.Button();
             this.checkBox_InsertVar = new System.Windows.Forms.CheckBox();
             this.checkBox_storePath = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -75,6 +80,7 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.label_controllerState = new System.Windows.Forms.Label();
             this.panel_sonForm = new System.Windows.Forms.Panel();
+            this.button_resetPoint = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -158,7 +164,7 @@
             this.button_updata.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.button_updata.Size = new System.Drawing.Size(172, 40);
             this.button_updata.TabIndex = 3;
-            this.button_updata.Text = "     扫描IP";
+            this.button_updata.Text = "     扫描";
             this.button_updata.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button_updata.UseVisualStyleBackColor = false;
             this.button_updata.Click += new System.EventHandler(this.button_updata_Click);
@@ -238,6 +244,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.panel1.Controls.Add(this.button_checkProgramm);
             this.panel1.Controls.Add(this.button_data);
             this.panel1.Controls.Add(this.button_min);
             this.panel1.Controls.Add(this.label6);
@@ -250,13 +257,33 @@
             this.panel1.Controls.Add(this.button5);
             this.panel1.Controls.Add(this.button_ioWinShow);
             this.panel1.Controls.Add(this.button3);
-            this.panel1.Controls.Add(this.button4);
+            this.panel1.Controls.Add(this.button_exit);
             this.panel1.Controls.Add(this.button_ConnectMenu);
+            this.panel1.Controls.Add(this.label8);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(172, 562);
             this.panel1.TabIndex = 13;
+            // 
+            // button_checkProgramm
+            // 
+            this.button_checkProgramm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(153)))), ((int)(((byte)(204)))));
+            this.button_checkProgramm.FlatAppearance.BorderSize = 0;
+            this.button_checkProgramm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_checkProgramm.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.button_checkProgramm.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.button_checkProgramm.Image = ((System.Drawing.Image)(resources.GetObject("button_checkProgramm.Image")));
+            this.button_checkProgramm.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button_checkProgramm.Location = new System.Drawing.Point(12, 373);
+            this.button_checkProgramm.Name = "button_checkProgramm";
+            this.button_checkProgramm.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.button_checkProgramm.Size = new System.Drawing.Size(143, 31);
+            this.button_checkProgramm.TabIndex = 14;
+            this.button_checkProgramm.Text = "     快速检查程序";
+            this.button_checkProgramm.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button_checkProgramm.UseVisualStyleBackColor = false;
+            this.button_checkProgramm.Click += new System.EventHandler(this.button_checkProgramm_Click);
             // 
             // button_data
             // 
@@ -267,7 +294,7 @@
             this.button_data.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button_data.Image = ((System.Drawing.Image)(resources.GetObject("button_data.Image")));
             this.button_data.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button_data.Location = new System.Drawing.Point(0, 325);
+            this.button_data.Location = new System.Drawing.Point(0, 315);
             this.button_data.Name = "button_data";
             this.button_data.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.button_data.Size = new System.Drawing.Size(172, 40);
@@ -338,9 +365,9 @@
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(241)))), ((int)(((byte)(241)))));
             this.label4.Location = new System.Drawing.Point(25, 61);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(118, 24);
+            this.label4.Size = new System.Drawing.Size(136, 24);
             this.label4.TabIndex = 8;
-            this.label4.Text = "基础数据传输";
+            this.label4.Text = "数据传输与测验";
             // 
             // panel6
             // 
@@ -353,7 +380,7 @@
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.Turquoise;
-            this.panel5.Location = new System.Drawing.Point(15, 208);
+            this.panel5.Location = new System.Drawing.Point(15, 198);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(10, 21);
             this.panel5.TabIndex = 6;
@@ -363,7 +390,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("微软雅黑", 13F);
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(241)))), ((int)(((byte)(241)))));
-            this.label3.Location = new System.Drawing.Point(25, 206);
+            this.label3.Location = new System.Drawing.Point(25, 196);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(82, 24);
             this.label3.TabIndex = 5;
@@ -378,7 +405,7 @@
             this.button5.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button5.Image = ((System.Drawing.Image)(resources.GetObject("button5.Image")));
             this.button5.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button5.Location = new System.Drawing.Point(0, 233);
+            this.button5.Location = new System.Drawing.Point(0, 223);
             this.button5.Name = "button5";
             this.button5.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.button5.Size = new System.Drawing.Size(172, 40);
@@ -397,7 +424,7 @@
             this.button_ioWinShow.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button_ioWinShow.Image = ((System.Drawing.Image)(resources.GetObject("button_ioWinShow.Image")));
             this.button_ioWinShow.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button_ioWinShow.Location = new System.Drawing.Point(0, 279);
+            this.button_ioWinShow.Location = new System.Drawing.Point(0, 269);
             this.button_ioWinShow.Name = "button_ioWinShow";
             this.button_ioWinShow.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.button_ioWinShow.Size = new System.Drawing.Size(172, 40);
@@ -421,30 +448,30 @@
             this.button3.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.button3.Size = new System.Drawing.Size(172, 40);
             this.button3.TabIndex = 2;
-            this.button3.Text = "     文件传输";
+            this.button3.Text = "     文件管理";
             this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // button4
+            // button_exit
             // 
-            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(153)))));
-            this.button4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.button4.FlatAppearance.BorderSize = 0;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button4.Image = ((System.Drawing.Image)(resources.GetObject("button4.Image")));
-            this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button4.Location = new System.Drawing.Point(0, 522);
-            this.button4.Name = "button4";
-            this.button4.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
-            this.button4.Size = new System.Drawing.Size(172, 40);
-            this.button4.TabIndex = 1;
-            this.button4.Text = "     退出";
-            this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button4.UseVisualStyleBackColor = false;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.button_exit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(153)))));
+            this.button_exit.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.button_exit.FlatAppearance.BorderSize = 0;
+            this.button_exit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_exit.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button_exit.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.button_exit.Image = ((System.Drawing.Image)(resources.GetObject("button_exit.Image")));
+            this.button_exit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button_exit.Location = new System.Drawing.Point(0, 522);
+            this.button_exit.Name = "button_exit";
+            this.button_exit.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.button_exit.Size = new System.Drawing.Size(172, 40);
+            this.button_exit.TabIndex = 1;
+            this.button_exit.Text = "     退出";
+            this.button_exit.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button_exit.UseVisualStyleBackColor = false;
+            this.button_exit.Click += new System.EventHandler(this.button4_Click);
             // 
             // button_ConnectMenu
             // 
@@ -465,6 +492,16 @@
             this.button_ConnectMenu.UseVisualStyleBackColor = false;
             this.button_ConnectMenu.Click += new System.EventHandler(this.button_ConnectMenu_Click);
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.ForeColor = System.Drawing.Color.White;
+            this.label8.Location = new System.Drawing.Point(13, 400);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(143, 12);
+            this.label8.TabIndex = 16;
+            this.label8.Text = "-----------------------";
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -479,6 +516,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.listView1);
             this.panel2.Controls.Add(this.button_updata);
             this.panel2.Controls.Add(this.label1);
@@ -488,6 +526,18 @@
             this.panel2.Size = new System.Drawing.Size(454, 241);
             this.panel2.TabIndex = 16;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(153)))), ((int)(((byte)(204)))));
+            this.label2.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
+            this.label2.Location = new System.Drawing.Point(10, 63);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(148, 17);
+            this.label2.TabIndex = 18;
+            this.label2.Text = "! 选中系统名称以进行连接";
+            // 
             // listView1
             // 
             this.listView1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -496,7 +546,8 @@
             this.columnHeader2_ControllerIP,
             this.columnHeader3_ControllerName,
             this.columnHeader4_sysInfo,
-            this.columnHeader5_ControllerID});
+            this.columnHeader5_ControllerID,
+            this.columnHeader6_Port});
             this.listView1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.listView1.GridLines = true;
             this.listView1.HideSelection = false;
@@ -517,25 +568,31 @@
             // columnHeader2_ControllerIP
             // 
             this.columnHeader2_ControllerIP.Text = "IP";
-            this.columnHeader2_ControllerIP.Width = 87;
+            this.columnHeader2_ControllerIP.Width = 62;
             // 
             // columnHeader3_ControllerName
             // 
             this.columnHeader3_ControllerName.Text = "控制器名称";
-            this.columnHeader3_ControllerName.Width = 105;
+            this.columnHeader3_ControllerName.Width = 75;
             // 
             // columnHeader4_sysInfo
             // 
             this.columnHeader4_sysInfo.Text = "系统版本";
-            this.columnHeader4_sysInfo.Width = 76;
+            this.columnHeader4_sysInfo.Width = 71;
             // 
             // columnHeader5_ControllerID
             // 
             this.columnHeader5_ControllerID.Text = "控制器ID";
-            this.columnHeader5_ControllerID.Width = 74;
+            this.columnHeader5_ControllerID.Width = 70;
+            // 
+            // columnHeader6_Port
+            // 
+            this.columnHeader6_Port.Text = "端口";
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.button_resetPoint);
+            this.panel3.Controls.Add(this.button_loadModule);
             this.panel3.Controls.Add(this.checkBox_InsertVar);
             this.panel3.Controls.Add(this.checkBox_storePath);
             this.panel3.Controls.Add(this.groupBox1);
@@ -552,6 +609,22 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(450, 487);
             this.panel3.TabIndex = 17;
+            // 
+            // button_loadModule
+            // 
+            this.button_loadModule.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(153)))), ((int)(((byte)(204)))));
+            this.button_loadModule.FlatAppearance.BorderSize = 0;
+            this.button_loadModule.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_loadModule.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.button_loadModule.ForeColor = System.Drawing.Color.White;
+            this.button_loadModule.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button_loadModule.Location = new System.Drawing.Point(4, 363);
+            this.button_loadModule.Name = "button_loadModule";
+            this.button_loadModule.Size = new System.Drawing.Size(91, 22);
+            this.button_loadModule.TabIndex = 19;
+            this.button_loadModule.Text = "载入所选模块";
+            this.button_loadModule.UseVisualStyleBackColor = false;
+            this.button_loadModule.Click += new System.EventHandler(this.button_loadModule_Click);
             // 
             // checkBox_InsertVar
             // 
@@ -710,6 +783,22 @@
             this.panel_sonForm.Size = new System.Drawing.Size(146, 143);
             this.panel_sonForm.TabIndex = 19;
             // 
+            // button_resetPoint
+            // 
+            this.button_resetPoint.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(153)))), ((int)(((byte)(204)))));
+            this.button_resetPoint.FlatAppearance.BorderSize = 0;
+            this.button_resetPoint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_resetPoint.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.button_resetPoint.ForeColor = System.Drawing.Color.White;
+            this.button_resetPoint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button_resetPoint.Location = new System.Drawing.Point(4, 339);
+            this.button_resetPoint.Name = "button_resetPoint";
+            this.button_resetPoint.Size = new System.Drawing.Size(91, 22);
+            this.button_resetPoint.TabIndex = 20;
+            this.button_resetPoint.Text = "复位程序指针";
+            this.button_resetPoint.UseVisualStyleBackColor = false;
+            this.button_resetPoint.Click += new System.EventHandler(this.button_resetPoint_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -755,7 +844,7 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button button_ConnectMenu;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button_exit;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel2;
@@ -790,6 +879,12 @@
         private System.Windows.Forms.Button button_insert;
         private System.Windows.Forms.CheckBox checkBox_storePath;
         private System.Windows.Forms.CheckBox checkBox_InsertVar;
+        private System.Windows.Forms.ColumnHeader columnHeader6_Port;
+        private System.Windows.Forms.Button button_checkProgramm;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button button_loadModule;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button button_resetPoint;
     }
 }
 
