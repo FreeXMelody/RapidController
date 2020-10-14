@@ -114,6 +114,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="animations.cs" />
+    <Compile Include="customMessageBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="customMessageBox.Designer.cs">
+      <DependentUpon>customMessageBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="dataMonitor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -142,6 +149,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="customMessageBox.resx">
+      <DependentUpon>customMessageBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="dataMonitor.resx">
       <DependentUpon>dataMonitor.cs</DependentUpon>
     </EmbeddedResource>

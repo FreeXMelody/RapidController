@@ -24,7 +24,7 @@ namespace rapid2Controler
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ctrlCore.SetIOStatus(controller, textBox1.Text); ;
+            ctrlCore.SetIOStatus(controller, textBox1.Text); 
         }
 
         private void button_resetIO_Click(object sender, EventArgs e)

@@ -45,6 +45,9 @@ namespace rapid2Controler
         // get task
         public ABB.Robotics.Controllers.RapidDomain.Task tRob1;
         public ABB.Robotics.Controllers.RapidDomain.Task[] aTask;
+        // myMessageBox location / text
+        public static Point p2;
+        public static string MessageContent;
         public Form1()
         {
             InitializeComponent();
@@ -150,6 +153,7 @@ namespace rapid2Controler
                             Text = "当前已连接：" + listView1.SelectedItems[0].Text;
                             label2_INFO.Text = "已连接。";
                             setInfoColor();
+                            ShowNewMessage("已连接到控制器：" + listView1.SelectedItems[0].Text);
                             button_connect.Text = "     断开";
                         }
                     }
@@ -565,6 +569,31 @@ namespace rapid2Controler
         private void button_resetPoint_Click(object sender, EventArgs e)
         {
             ctrlCore.RAPID_ProgramReset(controller, "T_ROB1");
+        }
+
+        private void button4_Click_1(object sender, EventArgs e)
+        {
+            Point p1 = new Point(this.button4.Location.X-100, this.button4.Location.Y + 10);
+            p2 = PointToScreen(p1);
+            customMessageBox win = new customMessageBox();
+            win.Show();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            MessageContent = "窗口加载成功！";
+        }
+
+        public void ShowNewMessage(string AMessage)
+        {
+            MessageContent = AMessage;
+            button4_Click_1(null,null);
+            // 后续可添加 显示消息窗口 的图标， 警告 错误 啥的
         }
 
         /// <summary>

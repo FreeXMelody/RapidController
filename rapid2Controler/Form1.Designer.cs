@@ -67,6 +67,7 @@
             this.columnHeader5_ControllerID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6_Port = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel3 = new System.Windows.Forms.Panel();
+            this.button_resetPoint = new System.Windows.Forms.Button();
             this.button_loadModule = new System.Windows.Forms.Button();
             this.checkBox_InsertVar = new System.Windows.Forms.CheckBox();
             this.checkBox_storePath = new System.Windows.Forms.CheckBox();
@@ -78,9 +79,10 @@
             this.label7 = new System.Windows.Forms.Label();
             this.button6 = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.button8 = new System.Windows.Forms.Button();
             this.label_controllerState = new System.Windows.Forms.Label();
             this.panel_sonForm = new System.Windows.Forms.Panel();
-            this.button_resetPoint = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -610,6 +612,22 @@
             this.panel3.Size = new System.Drawing.Size(450, 487);
             this.panel3.TabIndex = 17;
             // 
+            // button_resetPoint
+            // 
+            this.button_resetPoint.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(153)))), ((int)(((byte)(204)))));
+            this.button_resetPoint.FlatAppearance.BorderSize = 0;
+            this.button_resetPoint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_resetPoint.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.button_resetPoint.ForeColor = System.Drawing.Color.White;
+            this.button_resetPoint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button_resetPoint.Location = new System.Drawing.Point(4, 339);
+            this.button_resetPoint.Name = "button_resetPoint";
+            this.button_resetPoint.Size = new System.Drawing.Size(91, 22);
+            this.button_resetPoint.TabIndex = 20;
+            this.button_resetPoint.Text = "复位程序指针";
+            this.button_resetPoint.UseVisualStyleBackColor = false;
+            this.button_resetPoint.Click += new System.EventHandler(this.button_resetPoint_Click);
+            // 
             // button_loadModule
             // 
             this.button_loadModule.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(153)))), ((int)(((byte)(204)))));
@@ -755,6 +773,7 @@
             // 
             // panel4
             // 
+            this.panel4.Controls.Add(this.button8);
             this.panel4.Controls.Add(this.label_controllerState);
             this.panel4.Controls.Add(this.label2_INFO);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -762,6 +781,16 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(953, 44);
             this.panel4.TabIndex = 18;
+            // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(234, 24);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(59, 23);
+            this.button8.TabIndex = 22;
+            this.button8.Text = "show";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Visible = false;
             // 
             // label_controllerState
             // 
@@ -783,21 +812,16 @@
             this.panel_sonForm.Size = new System.Drawing.Size(146, 143);
             this.panel_sonForm.TabIndex = 19;
             // 
-            // button_resetPoint
+            // button4
             // 
-            this.button_resetPoint.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(153)))), ((int)(((byte)(204)))));
-            this.button_resetPoint.FlatAppearance.BorderSize = 0;
-            this.button_resetPoint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_resetPoint.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.button_resetPoint.ForeColor = System.Drawing.Color.White;
-            this.button_resetPoint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button_resetPoint.Location = new System.Drawing.Point(4, 339);
-            this.button_resetPoint.Name = "button_resetPoint";
-            this.button_resetPoint.Size = new System.Drawing.Size(91, 22);
-            this.button_resetPoint.TabIndex = 20;
-            this.button_resetPoint.Text = "复位程序指针";
-            this.button_resetPoint.UseVisualStyleBackColor = false;
-            this.button_resetPoint.Click += new System.EventHandler(this.button_resetPoint_Click);
+            this.button4.Location = new System.Drawing.Point(406, 481);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(59, 23);
+            this.button4.TabIndex = 21;
+            this.button4.Text = "show";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Visible = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click_1);
             // 
             // Form1
             // 
@@ -806,6 +830,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1125, 562);
             this.ControlBox = false;
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.panel_sonForm);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
@@ -817,6 +842,7 @@
             this.MinimizeBox = false;
             this.Name = "Form1";
             this.Text = "RobotController";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -885,6 +911,8 @@
         private System.Windows.Forms.Button button_loadModule;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button_resetPoint;
+        public System.Windows.Forms.Button button4;
+        public System.Windows.Forms.Button button8;
     }
 }
 
