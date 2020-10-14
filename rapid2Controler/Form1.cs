@@ -515,9 +515,7 @@ namespace rapid2Controler
         void loadModule()
         {
             tRob1 = controller.Rapid.GetTask("T_ROB1");
-           
-            // aTask = controller.Rapid.GetTasks();
-            // string filePath = Path.ChangeExtension(ModuleFileName, ".prg");
+
             try
             {
                 string filePath = controller.FileSystem.GetRemotePath(listBox2_fileStore.SelectedItem.ToString());
@@ -595,57 +593,5 @@ namespace rapid2Controler
             button4_Click_1(null,null);
             // 后续可添加 显示消息窗口 的图标， 警告 错误 啥的
         }
-
-        /// <summary>
-        /// 加载rapid程序文件到控制器
-        /// </summary>
-        /*
-         public void LoadModuleFromFile()
-         {
-             try
-             {
-                 // Step 1: Connect to the controller 略
-                 // Clears the eventlogs in the controller
-                 controller.EventLog.ClearAll();
-                 tRob1 = controller.Rapid.GetTask("T_ROB1");
-                 // 获取模块路径，控制器中与HOME目录合并
-                 string filePath = listBox2_fileStore.SelectedItem.ToString();
-                 // Path.Combine(controller.GetEnvironmentVariable("HOME"), listBox2_fileStore.SelectedItem.ToString());
-                 bool bLoadSuccess = false;
-
-                 // Step 3: Load Module 
-                 using (Mastership.Request(controller.Rapid))
-                 {
-                     // Loads a RAPID module to the task in the robot controller.
-                     bLoadSuccess = tRob1.LoadModuleFromFile(filePath, RapidLoadMode.Replace);
-                 }
-
-                 // True if loading succeeds without any errors, otherwise false. 
-                 if (!bLoadSuccess)
-                 {
-                     // Gets the available categories of the EventLog.
-                     foreach (EventLogCategory category in controller.EventLog.GetCategories())
-                     {
-                         if (category.Name == "Common")
-                         {
-                             if (category.Messages.Count > 0)
-                             {
-                                 foreach (EventLogMessage message in category.Messages)
-                                 {
-                                     Console.WriteLine("Program [{1}:{2}({0})] {3} {4}",
-                                         message.Name, message.SequenceNumber,
-                                         message.Timestamp, message.Title, message.Body);
-                                 }
-                             }
-                         }
-                     }
-                 }
-             }
-             catch (Exception ex)
-             {
-                 Console.WriteLine("加载程序时出现错误:{0}", ex.Message);
-             }
-         }
-  */
     }
 }
