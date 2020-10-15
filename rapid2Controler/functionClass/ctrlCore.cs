@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using ABB.Robotics.Controllers.RapidDomain;
 namespace rapid2Controler
 {
     class ctrlCore
@@ -116,7 +116,7 @@ namespace rapid2Controler
                 controller.Logon(ABB.Robotics.Controllers.UserInfo.DefaultUser);
                 if (controller.OperatingMode != ControllerOperatingMode.Auto)//自动模式
                 {
-                    return null;
+                    return "检测到非自动模式";
                 }
                 if (!controller.AuthenticationSystem.CheckDemandGrant(Grant.ExecuteRapid))//可执行
                     controller.AuthenticationSystem.DemandGrant(Grant.ExecuteRapid);
@@ -142,5 +142,7 @@ namespace rapid2Controler
             return null;
 
         }
+
+
     }
 }

@@ -431,7 +431,7 @@
             this.button_ioWinShow.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.button_ioWinShow.Size = new System.Drawing.Size(172, 40);
             this.button_ioWinShow.TabIndex = 3;
-            this.button_ioWinShow.Text = "     I/O控制";
+            this.button_ioWinShow.Text = "     IO / Socket";
             this.button_ioWinShow.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button_ioWinShow.UseVisualStyleBackColor = false;
             this.button_ioWinShow.Click += new System.EventHandler(this.button_ioWinShow_Click);

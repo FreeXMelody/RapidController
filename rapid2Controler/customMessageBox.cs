@@ -55,7 +55,8 @@ namespace rapid2Controler
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.Close();
+            //this.Dispose();
+            //this.Close();
         }
 
         private void timer_location_Tick(object sender, EventArgs e)
@@ -72,6 +73,7 @@ namespace rapid2Controler
         {
             if (Opacity == 0)
             {
+                this.Dispose();
                 this.Close();
             }
             else { this.Opacity -= 0.02; }

@@ -17,10 +17,11 @@ using ABB.Robotics.Controllers.RapidDomain;
 
 namespace rapid2Controler
 {
-    
-    public partial class dataMonitor : Form //   :Form 继承Form1
+    public partial class dataMonitor : Form
     {
         public Tool tool1 ;
+        static Form1 Form1 = new Form1();
+        static Controller controller;
         public WorkObject w1;
         public ToolData toolData;
         public  WobjData wobjData;
@@ -31,11 +32,11 @@ namespace rapid2Controler
             w1 = Form1.w;
             toolData = Form1.toolData;
             wobjData = Form1.wobjData;
+            controller = Form1.controller;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
             try
             {
                 // 转化为工具坐标和坐标系
@@ -48,7 +49,33 @@ namespace rapid2Controler
             {
                 MessageBox.Show(ex.Message + "获取失败");
             }
-
          }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            RapidData aData = controller.Rapid.GetTask("T_ROB1").GetModule(textBox2.Text).GetRapidData(textBox1.Text);
+            textBox_rapidType.Text = aData.RapidType;
+            textBox_symbolType.Text = aData.Symbol.ToString();
+            textBox_varName.Text = aData.Name;
+            textBox_varValue.Text = aData.StringValue;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            // 读取日志信息、 包括可能的错误信息。【代码错误行】
+            EventLogCategory[] _cats = controller.EventLog.GetCategories();
+            listView1.Items.Clear();
+            ListViewItem _item;
+            foreach (EventLogCategory _cat in _cats)
+            {
+                foreach (EventLogMessage _msg in _cat.Messages)
+                {
+                    _item = new ListViewItem(_msg.SequenceNumber.ToString());
+                    _item.SubItems.Add(_msg.Number.ToString());
+                    _item.SubItems.Add(_msg.Title);
+                    this.listView1.Items.Add(_item);
+                }
+            }
+        }
     }
 }

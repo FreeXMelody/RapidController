@@ -26,11 +26,15 @@ namespace rapid2Controler
     {
         public NetworkScanner scanner ;
         public static Controller controller ;
+        public ControllerInfoCollection controllers;
         public string fileName = "";
         public const string Prefix = "";
         public bool activeForm = false;
         public  Color defaultBackColor = Color.FromArgb(51, 153, 153);
+        // 默认文字颜色 defaultforeColor
         public Color defaultforeColor = Color.FromName("Window");
+        public Color Warning_BackColor = Color.FromArgb(205, 38, 38);
+        public Color Prompt_BackColor = Color.FromArgb(30, 144, 255);
         public ControllerInfo controllerInfos1;
         public int ALLdg;
        public static  Tool tool; // 获取当前工具
@@ -95,6 +99,7 @@ namespace rapid2Controler
                     controller.FileSystem.PutFile(textBox_path.Text); 
                     button1_Click(null, null);
                     label2_INFO.Text = ("已上传至控制器，" + controller.FileSystem.GetRemotePath(fileName) +"目录下"  +  "---" + $"文件列表已刷新，共发现文件 {ALLdg} 个");
+                    ShowNewMessage("已上传至控制器，" + controller.FileSystem.GetRemotePath(fileName) + "目录下");
                     setInfoColor(Color.FromArgb(30, 144, 255), Color.FromArgb(248, 248, 255));
 
                     if (checkBox_storePath.Checked == true) { }
@@ -109,15 +114,15 @@ namespace rapid2Controler
         {
             scanner = new NetworkScanner();
             scanner.Scan();
-            ControllerInfoCollection controllers = scanner.Controllers;
+            controllers = scanner.Controllers;
             // listBox1.Items.Clear();
-            ListViewItem listViewItem1 = new ListViewItem();
-            listViewItem1.Text = "";
+            ListViewItem listViewItem1;
             listView1.Items.Clear();
             foreach (ControllerInfo info in controllers)
             {
+                listViewItem1 = new ListViewItem(info.SystemName);
                 // INDEX: SysName/ IP / ControllerName / SysInfo  / ID / Port
-                listViewItem1.Text = (info.SystemName); // 第一列
+               // listViewItem1.Text = (info.SystemName); // 第一列
                 listViewItem1.SubItems.Add(info.IPAddress.ToString());
                 listViewItem1.SubItems.Add(info.ControllerName);
                 listViewItem1.SubItems.Add(info.Version.ToString());
@@ -128,36 +133,29 @@ namespace rapid2Controler
         }
         public void connectController()
         {
-            ControllerInfoCollection controllerInfos = scanner.Controllers;
-            foreach (ControllerInfo info in controllerInfos)
+            foreach (ControllerInfo info in controllers)
             {
-                if (listView1.SelectedItems[0].SubItems[4].Text == info.SystemId.ToString())
+                if (controller != null) // 登出
                 {
-                    // 可获性
-                    if (info.Availability == Availability.Available)
-                    {
-                        if (controller != null) // 登出
-                        {
-                            controller.Logoff();
-                            label2_INFO.Text = "已断开连接。";
-                            setInfoColor();
-                            controller.Dispose(); // 释放资源
-                            controller = null;
-                            button_connect.Text = "     连接";
-                        }
-                        else // 登入
-                        {
-                            //   Controller.Connect(info.SystemId,ConnectionType.Standalone);
-                            controller = ControllerFactory.CreateFrom(info);
-                            controller.Logon(UserInfo.DefaultUser);
-                            Text = "当前已连接：" + listView1.SelectedItems[0].Text;
-                            label2_INFO.Text = "已连接。";
-                            setInfoColor();
-                            ShowNewMessage("已连接到控制器：" + listView1.SelectedItems[0].Text);
-                            button_connect.Text = "     断开";
-                        }
-                    }
-                    else { }
+                    controller.Logoff();
+                    label2_INFO.Text = "已断开连接。";
+                    setInfoColor();
+                    controller.Dispose(); // 释放资源
+                    controller = null;
+                    button_connect.Text = "     连接";
+                }
+                else // 登入
+                {
+                    Guid a = new Guid();
+                    a = Guid.Parse(listView1.SelectedItems[0].SubItems[4].Text);
+                    //   Controller.Connect(info.SystemId,ConnectionType.Standalone);
+                    controller = Controller.Connect(a, ConnectionType.Standalone);
+                    controller.Logon(UserInfo.DefaultUser);
+                    Text = "当前已连接：" + listView1.SelectedItems[0].Text;
+                    label2_INFO.Text = "已连接。";
+                    setInfoColor();
+                    ShowNewMessage("已连接到控制器：" + listView1.SelectedItems[0].Text);
+                    button_connect.Text = "     断开";
                 }
             }
         }
@@ -165,7 +163,7 @@ namespace rapid2Controler
         {
             // 连接到示教器
             connectController();
-        label_controllerState.Text = "当前控制器状态：" + controller.State.ToString();
+            //  label_controllerState.Text = "当前控制器状态：" + controller.State.ToString();
         }
 
         private void button_updata_Click(object sender, EventArgs e)
@@ -360,16 +358,18 @@ namespace rapid2Controler
         public void button_data_Click(object sender, EventArgs e)
         {
             // 获取当前tool 与 wobj
+           
             try
             {
                 tool = controller.MotionSystem.ActiveMechanicalUnit.Tool;
                 w = controller.MotionSystem.ActiveMechanicalUnit.WorkObject;
-                toolData = (ToolData)tool.Data;
-                wobjData = (WobjData)w.Data;
-                activeWindow(new dataMonitor());
+             //   toolData = (ToolData)tool.Data;
+              //  wobjData = (WobjData)w.Data;
+                
             }
             catch (Exception ex) { MessageBox.Show(ex.Message,"错误"); }
-        }
+            activeWindow(new dataMonitor());
+        } 
 
         private void button7_Click(object sender, EventArgs e)
         {
@@ -500,7 +500,7 @@ namespace rapid2Controler
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception ex) // 白鹿丶浔
             { MessageBox.Show(ex.Message,"错误"); }
         }
 
@@ -566,7 +566,15 @@ namespace rapid2Controler
 
         private void button_resetPoint_Click(object sender, EventArgs e)
         {
-            ctrlCore.RAPID_ProgramReset(controller, "T_ROB1");
+            if(ctrlCore.RAPID_ProgramReset(controller, "T_ROB1") != -1 || ctrlCore.RAPID_ProgramReset(controller, "T_ROB1")!=0)
+            {
+                ShowNewMessage("程序指针复位成功。");
+            }
+            else
+            {
+                label2_INFO.Text = "复位程序指针失败！";
+                setInfoColor(Warning_BackColor,defaultforeColor);
+            }
         }
 
         private void button4_Click_1(object sender, EventArgs e)
@@ -575,11 +583,6 @@ namespace rapid2Controler
             p2 = PointToScreen(p1);
             customMessageBox win = new customMessageBox();
             win.Show();
-        }
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-
         }
 
         private void Form1_Load(object sender, EventArgs e)

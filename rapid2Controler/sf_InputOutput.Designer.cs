@@ -38,7 +38,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(71, 12);
+            this.textBox1.Location = new System.Drawing.Point(102, 11);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(113, 21);
             this.textBox1.TabIndex = 0;
@@ -47,7 +47,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(2, 12);
+            this.label1.Location = new System.Drawing.Point(33, 11);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(79, 20);
             this.label1.TabIndex = 1;
@@ -56,7 +56,7 @@
             // button_setIO
             // 
             this.button_setIO.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button_setIO.Location = new System.Drawing.Point(71, 39);
+            this.button_setIO.Location = new System.Drawing.Point(102, 38);
             this.button_setIO.Name = "button_setIO";
             this.button_setIO.Size = new System.Drawing.Size(54, 23);
             this.button_setIO.TabIndex = 2;
@@ -67,7 +67,7 @@
             // button_resetIO
             // 
             this.button_resetIO.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button_resetIO.Location = new System.Drawing.Point(131, 39);
+            this.button_resetIO.Location = new System.Drawing.Point(162, 38);
             this.button_resetIO.Name = "button_resetIO";
             this.button_resetIO.Size = new System.Drawing.Size(53, 23);
             this.button_resetIO.TabIndex = 3;
@@ -78,7 +78,7 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button1.Location = new System.Drawing.Point(71, 68);
+            this.button1.Location = new System.Drawing.Point(102, 67);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(113, 23);
             this.button1.TabIndex = 4;
@@ -90,10 +90,11 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label2.Location = new System.Drawing.Point(67, 94);
+            this.label2.Location = new System.Drawing.Point(98, 97);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(0, 20);
+            this.label2.Size = new System.Drawing.Size(130, 20);
             this.label2.TabIndex = 5;
+            this.label2.Text = "IO STATUS READY";
             // 
             // sf_InputOutput
             // 

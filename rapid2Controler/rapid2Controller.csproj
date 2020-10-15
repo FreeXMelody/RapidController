@@ -114,7 +114,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="animations.cs" />
+    <Compile Include="functionClass\animations.cs" />
     <Compile Include="customMessageBox.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -127,8 +127,8 @@
     <Compile Include="dataMonitor.Designer.cs">
       <DependentUpon>dataMonitor.cs</DependentUpon>
     </Compile>
-    <Compile Include="DirectoriesControl.cs" />
-    <Compile Include="ctrlCore.cs" />
+    <Compile Include="functionClass\DirectoriesControl.cs" />
+    <Compile Include="functionClass\ctrlCore.cs" />
     <Compile Include="sf_controllerWin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -206,6 +206,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
