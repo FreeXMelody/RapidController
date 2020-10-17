@@ -42,8 +42,8 @@ namespace rapid2Controler
                 // 转化为工具坐标和坐标系
                 toolData = (ToolData)tool1.Data; // 拆箱操作
                 wobjData = (WobjData)w1.Data;
-                label_tool.Text = "当前Tool：" + tool1.Name + "\n  " + "坐标：\n" + toolData.ToString();
-                label_wobj.Text = "工具坐标系：" + w1.Name + "\n  " + "工具坐标：\n" + wobjData.ToString();
+                label_tool.Text = "当前Tool：" + tool1.Name + "  " + "坐标：" + toolData.ToString();
+                label_wobj.Text = "工具坐标系：" + w1.Name + "  " + "工具坐标：" + wobjData.ToString();
             }
             catch (Exception ex)
             {
@@ -64,7 +64,6 @@ namespace rapid2Controler
         {
             // 读取日志信息、 包括可能的错误信息。【代码错误行】
             EventLogCategory[] _cats = controller.EventLog.GetCategories();
-            label_logCount.Text = _cats.Length.ToString() ;
             listView1.Items.Clear();
             ListViewItem _item;
             foreach (EventLogCategory _cat in _cats)
@@ -72,13 +71,12 @@ namespace rapid2Controler
                 foreach (EventLogMessage _msg in _cat.Messages)
                 {
                     _item = new ListViewItem(_msg.SequenceNumber.ToString());
-                    _item.SubItems.Add(_msg.Title);
+                    _item.SubItems.Add(_msg.Title); 
                     _item.SubItems.Add(_msg.Body);
-                    _item.SubItems.Add(_msg.Type.ToString());
+                    _item.SubItems.Add(_msg.Type.ToString()) ;
                     this.listView1.Items.Add(_item);
                 }
             }
-            
         }
     }
 }
