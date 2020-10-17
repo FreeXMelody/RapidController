@@ -139,6 +139,7 @@ namespace rapid2Controler
                 {
                     controller.Logoff();
                     label2_INFO.Text = "已断开连接。";
+                    Text = "已断开连接";
                     setInfoColor();
                     controller.Dispose(); // 释放资源
                     controller = null;

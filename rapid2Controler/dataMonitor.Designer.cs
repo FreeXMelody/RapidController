@@ -43,8 +43,13 @@
             this.label_wobj = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.button3 = new System.Windows.Forms.Button();
+            this.label_logCount = new System.Windows.Forms.Label();
             this.listView1 = new System.Windows.Forms.ListView();
+            this.button3 = new System.Windows.Forms.Button();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -157,7 +162,7 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(6, 177);
+            this.button1.Location = new System.Drawing.Point(2, 177);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(101, 34);
             this.button1.TabIndex = 1;
@@ -170,24 +175,25 @@
             this.label_tool.AutoSize = true;
             this.label_tool.BackColor = System.Drawing.SystemColors.Control;
             this.label_tool.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.label_tool.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label_tool.Font = new System.Drawing.Font("微软雅黑", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label_tool.ForeColor = System.Drawing.Color.Black;
-            this.label_tool.Location = new System.Drawing.Point(9, 25);
+            this.label_tool.Location = new System.Drawing.Point(6, 25);
             this.label_tool.Name = "label_tool";
-            this.label_tool.Size = new System.Drawing.Size(60, 20);
+            this.label_tool.Size = new System.Drawing.Size(44, 16);
             this.label_tool.TabIndex = 0;
             this.label_tool.Text = "准备中...";
             // 
             // label_wobj
             // 
+            this.label_wobj.AutoEllipsis = true;
             this.label_wobj.AutoSize = true;
             this.label_wobj.BackColor = System.Drawing.SystemColors.Control;
             this.label_wobj.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.label_wobj.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label_wobj.Font = new System.Drawing.Font("微软雅黑", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label_wobj.ForeColor = System.Drawing.Color.Black;
-            this.label_wobj.Location = new System.Drawing.Point(9, 54);
+            this.label_wobj.Location = new System.Drawing.Point(3, 78);
             this.label_wobj.Name = "label_wobj";
-            this.label_wobj.Size = new System.Drawing.Size(60, 20);
+            this.label_wobj.Size = new System.Drawing.Size(44, 16);
             this.label_wobj.TabIndex = 2;
             this.label_wobj.Text = "准备中...";
             // 
@@ -197,15 +203,16 @@
             this.groupBox2.Controls.Add(this.label_wobj);
             this.groupBox2.Controls.Add(this.button1);
             this.groupBox2.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.groupBox2.Location = new System.Drawing.Point(193, 12);
+            this.groupBox2.Location = new System.Drawing.Point(191, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(175, 217);
+            this.groupBox2.Size = new System.Drawing.Size(315, 217);
             this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "工具信息获取";
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.label_logCount);
             this.groupBox3.Controls.Add(this.listView1);
             this.groupBox3.Controls.Add(this.button3);
             this.groupBox3.Font = new System.Drawing.Font("微软雅黑", 9F);
@@ -216,13 +223,42 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "日志信息";
             // 
+            // label_logCount
+            // 
+            this.label_logCount.AutoEllipsis = true;
+            this.label_logCount.AutoSize = true;
+            this.label_logCount.BackColor = System.Drawing.SystemColors.Control;
+            this.label_logCount.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.label_logCount.Font = new System.Drawing.Font("微软雅黑", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label_logCount.ForeColor = System.Drawing.Color.Black;
+            this.label_logCount.Location = new System.Drawing.Point(416, 40);
+            this.label_logCount.Name = "label_logCount";
+            this.label_logCount.Size = new System.Drawing.Size(44, 16);
+            this.label_logCount.TabIndex = 3;
+            this.label_logCount.Text = "准备中...";
+            // 
+            // listView1
+            // 
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4});
+            this.listView1.HideSelection = false;
+            this.listView1.Location = new System.Drawing.Point(10, 62);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(468, 120);
+            this.listView1.TabIndex = 4;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
+            // 
             // button3
             // 
             this.button3.BackColor = System.Drawing.Color.DodgerBlue;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button3.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(6, 22);
+            this.button3.Location = new System.Drawing.Point(10, 22);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(101, 34);
             this.button3.TabIndex = 3;
@@ -230,14 +266,21 @@
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // listView1
+            // columnHeader1
             // 
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(10, 62);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(468, 120);
-            this.listView1.TabIndex = 4;
-            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.columnHeader1.Text = "索引";
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "标题";
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "内容";
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "类型";
             // 
             // dataMonitor
             // 
@@ -254,6 +297,7 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -277,5 +321,10 @@
         private System.Windows.Forms.TextBox textBox_varName;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.ListView listView1;
+        public System.Windows.Forms.Label label_logCount;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
     }
 }
