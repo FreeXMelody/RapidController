@@ -18,26 +18,27 @@ using ABB.Robotics.Controllers.EventLogDomain;
 using ABB.Robotics.Controllers.FileSystemDomain;
 using ABB.Robotics.Controllers.MotionDomain;
 using ABB.Robotics.Controllers.RapidDomain;
+using rapid2Controler.functionClass;
 
 namespace rapid2Controler
 {
 
     public partial class Form1 : Form
     {
-        public NetworkScanner scanner ;
-        public static Controller controller ;
+        public NetworkScanner scanner;
+        public static Controller controller;
         public ControllerInfoCollection controllers;
         public string fileName = "";
         public const string Prefix = "";
         public bool activeForm = false;
-        public  Color defaultBackColor = Color.FromArgb(51, 153, 153);
+        public Color defaultBackColor = Color.FromArgb(51, 153, 153);
         // 默认文字颜色 defaultforeColor
         public Color defaultforeColor = Color.FromName("Window");
         public Color Warning_BackColor = Color.FromArgb(205, 38, 38);
         public Color Prompt_BackColor = Color.FromArgb(30, 144, 255);
         public ControllerInfo controllerInfos1;
         public int ALLdg;
-       public static  Tool tool; // 获取当前工具
+        public static Tool tool; // 获取当前工具
         public static WorkObject w; // 获取工具坐标系
         // 转化为工具坐标和坐标系
         public static ToolData toolData;
@@ -52,13 +53,66 @@ namespace rapid2Controler
         // myMessageBox location / text
         public static Point p2;
         public static string MessageContent;
+        string cfgPath = Application.StartupPath + "/config.ini";
         public Form1()
         {
             InitializeComponent();
+
+           // CheckCfg();
+            // init form layout
             this.Size = new Size(712, 543);
-            button_min.Location = new Point(0, button_exit.Location.Y - 41);
             panel2.Visible = false;
             panel3.Visible = false;
+        }
+
+
+        //public void Checkcfg_g()
+        //{ 
+        //    // 暂定 检查其他配置项
+        //}
+        /// <summary>
+        /// 检查是否存在已经应用自动连接的配置项
+        /// </summary>
+        public void CheckAutoConnectCfg()
+        {
+            string a = config.Read("cfgInit", "AutoConnect", "0", cfgPath);
+            if (a == "1")
+            {
+                try
+                {
+                    checkBox1.Checked = true;
+                    AutoConnect();
+                }
+                catch (Exception ex) { MessageBox.Show(ex.Message); }
+            }
+        }
+
+        public void AutoConnect()
+        {
+            scanner = new NetworkScanner();
+            scanner.Scan();
+            controllers = scanner.Controllers;
+            Guid a = new Guid();
+            string id = config.Read("ID","RobID","0",cfgPath);
+            a = Guid.Parse(id);
+            foreach (ControllerInfo info in controllers)
+            {
+                if (info.SystemId==a)
+                {
+                    controller = Controller.Connect(a, ConnectionType.Standalone);
+                    controller.Logon(UserInfo.DefaultUser);
+                    Text = "当前已自动连接：" + id;
+                    label2_INFO.Text = "已连接。";
+                    setInfoColor();
+                    ShowNewMessage("已自动连接到控制器：" + id);
+                    button_connect.Text = "     断开";
+                }
+            }
+            //   Controller.Connect(info.SystemId,ConnectionType.Standalone);
+        }
+
+        public void InitCfg()
+        {
         }
 
         private void button_Choosefile_Click(object sender, EventArgs e)
@@ -139,6 +193,7 @@ namespace rapid2Controler
                 {
                     controller.Logoff();
                     label2_INFO.Text = "已断开连接。";
+                    Text = "已断开连接....";
                     setInfoColor();
                     controller.Dispose(); // 释放资源
                     controller = null;
@@ -148,7 +203,6 @@ namespace rapid2Controler
                 {
                     Guid a = new Guid();
                     a = Guid.Parse(listView1.SelectedItems[0].SubItems[4].Text);
-                    //   Controller.Connect(info.SystemId,ConnectionType.Standalone);
                     controller = Controller.Connect(a, ConnectionType.Standalone);
                     controller.Logon(UserInfo.DefaultUser);
                     Text = "当前已连接：" + listView1.SelectedItems[0].Text;
@@ -163,7 +217,6 @@ namespace rapid2Controler
         {
             // 连接到示教器
             connectController();
-            //  label_controllerState.Text = "当前控制器状态：" + controller.State.ToString();
         }
 
         private void button_updata_Click(object sender, EventArgs e)
@@ -237,6 +290,8 @@ namespace rapid2Controler
 
         private void button_ConnectMenu_Click(object sender, EventArgs e)
         {
+            CheckAutoConnectCfg();
+
             new sf_InputOutput().Close();
             panel3.Visible = false;
             panel2.Enabled = true;
@@ -595,6 +650,30 @@ namespace rapid2Controler
             MessageContent = AMessage;
             button4_Click_1(null,null);
             // 后续可添加 显示消息窗口 的图标， 警告 错误 啥的
+        }
+
+        // 隐藏到托盘
+        private void button9_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+            this.Hide();
+            this.ShowInTaskbar = false;
+            notifyIcon1.Visible = true;
+        }
+
+        private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            this.Show();
+            this.WindowState = FormWindowState.Normal;
+            this.ShowInTaskbar = true;
+            notifyIcon1.Visible = false;
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked == true)
+            { config.Write("cfgInit", "AutoConnect", "1", cfgPath); }
+            else { config.Write("cfgInit", "AutoConnect", "0", cfgPath); }
         }
     }
 }

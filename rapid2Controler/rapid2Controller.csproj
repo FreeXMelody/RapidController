@@ -127,6 +127,7 @@
     <Compile Include="dataMonitor.Designer.cs">
       <DependentUpon>dataMonitor.cs</DependentUpon>
     </Compile>
+    <Compile Include="functionClass\config.cs" />
     <Compile Include="functionClass\DirectoriesControl.cs" />
     <Compile Include="functionClass\ctrlCore.cs" />
     <Compile Include="sf_controllerWin.cs">

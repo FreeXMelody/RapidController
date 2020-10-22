@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.button_connect = new System.Windows.Forms.Button();
             this.button_update = new System.Windows.Forms.Button();
@@ -40,6 +41,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button9 = new System.Windows.Forms.Button();
             this.button_checkProgramm = new System.Windows.Forms.Button();
             this.button_data = new System.Windows.Forms.Button();
             this.button_min = new System.Windows.Forms.Button();
@@ -59,6 +61,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader1_sysName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2_ControllerIP = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -83,6 +86,7 @@
             this.label_controllerState = new System.Windows.Forms.Label();
             this.panel_sonForm = new System.Windows.Forms.Panel();
             this.button4 = new System.Windows.Forms.Button();
+            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -246,6 +250,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.panel1.Controls.Add(this.button9);
             this.panel1.Controls.Add(this.button_checkProgramm);
             this.panel1.Controls.Add(this.button_data);
             this.panel1.Controls.Add(this.button_min);
@@ -268,6 +273,25 @@
             this.panel1.Size = new System.Drawing.Size(172, 562);
             this.panel1.TabIndex = 13;
             // 
+            // button9
+            // 
+            this.button9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(153)))));
+            this.button9.FlatAppearance.BorderSize = 0;
+            this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button9.Font = new System.Drawing.Font("微软雅黑", 8F);
+            this.button9.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.button9.Image = ((System.Drawing.Image)(resources.GetObject("button9.Image")));
+            this.button9.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button9.Location = new System.Drawing.Point(0, 428);
+            this.button9.Name = "button9";
+            this.button9.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.button9.Size = new System.Drawing.Size(172, 26);
+            this.button9.TabIndex = 22;
+            this.button9.Text = "       最小化到托盘";
+            this.button9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button9.UseVisualStyleBackColor = false;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
+            // 
             // button_checkProgramm
             // 
             this.button_checkProgramm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(153)))), ((int)(((byte)(204)))));
@@ -277,7 +301,7 @@
             this.button_checkProgramm.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button_checkProgramm.Image = ((System.Drawing.Image)(resources.GetObject("button_checkProgramm.Image")));
             this.button_checkProgramm.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button_checkProgramm.Location = new System.Drawing.Point(12, 373);
+            this.button_checkProgramm.Location = new System.Drawing.Point(12, 359);
             this.button_checkProgramm.Name = "button_checkProgramm";
             this.button_checkProgramm.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.button_checkProgramm.Size = new System.Drawing.Size(143, 31);
@@ -311,16 +335,16 @@
             this.button_min.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(153)))));
             this.button_min.FlatAppearance.BorderSize = 0;
             this.button_min.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_min.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button_min.Font = new System.Drawing.Font("微软雅黑", 8F);
             this.button_min.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button_min.Image = ((System.Drawing.Image)(resources.GetObject("button_min.Image")));
             this.button_min.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button_min.Location = new System.Drawing.Point(0, 481);
+            this.button_min.Location = new System.Drawing.Point(0, 396);
             this.button_min.Name = "button_min";
             this.button_min.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
-            this.button_min.Size = new System.Drawing.Size(172, 40);
+            this.button_min.Size = new System.Drawing.Size(172, 26);
             this.button_min.TabIndex = 12;
-            this.button_min.Text = "     最小化";
+            this.button_min.Text = "       最小化";
             this.button_min.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button_min.UseVisualStyleBackColor = false;
             this.button_min.Click += new System.EventHandler(this.button_min_Click);
@@ -457,7 +481,7 @@
             // 
             // button_exit
             // 
-            this.button_exit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(153)))));
+            this.button_exit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(148)))), ((int)(((byte)(153)))));
             this.button_exit.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.button_exit.FlatAppearance.BorderSize = 0;
             this.button_exit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -498,7 +522,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(13, 400);
+            this.label8.Location = new System.Drawing.Point(13, 386);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(143, 12);
             this.label8.TabIndex = 16;
@@ -519,6 +543,7 @@
             // panel2
             // 
             this.panel2.Controls.Add(this.label2);
+            this.panel2.Controls.Add(this.checkBox1);
             this.panel2.Controls.Add(this.listView1);
             this.panel2.Controls.Add(this.button_updata);
             this.panel2.Controls.Add(this.label1);
@@ -539,6 +564,19 @@
             this.label2.Size = new System.Drawing.Size(148, 17);
             this.label2.TabIndex = 18;
             this.label2.Text = "! 选中系统名称以进行连接";
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Font = new System.Drawing.Font("微软雅黑", 8F);
+            this.checkBox1.ForeColor = System.Drawing.Color.Black;
+            this.checkBox1.Location = new System.Drawing.Point(10, 45);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(126, 20);
+            this.checkBox1.TabIndex = 21;
+            this.checkBox1.Text = "下次启动时自动连接";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // listView1
             // 
@@ -823,6 +861,12 @@
             this.button4.Visible = false;
             this.button4.Click += new System.EventHandler(this.button4_Click_1);
             // 
+            // notifyIcon1
+            // 
+            this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
+            this.notifyIcon1.Text = "RapidController";
+            this.notifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseDoubleClick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -913,6 +957,9 @@
         private System.Windows.Forms.Button button_resetPoint;
         public System.Windows.Forms.Button button4;
         public System.Windows.Forms.Button button8;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.NotifyIcon notifyIcon1;
     }
 }
 
