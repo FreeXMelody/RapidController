@@ -19,6 +19,7 @@ using ABB.Robotics.Controllers.FileSystemDomain;
 using ABB.Robotics.Controllers.MotionDomain;
 using ABB.Robotics.Controllers.RapidDomain;
 using rapid2Controler.functionClass;
+using rapid2Controler.imgs;
 
 namespace rapid2Controler
 {
@@ -53,23 +54,32 @@ namespace rapid2Controler
         // myMessageBox location / text
         public static Point p2;
         public static string MessageContent;
+        // config.ini Read & Write
         string cfgPath = Application.StartupPath + "/config.ini";
         public Form1()
         {
             InitializeComponent();
 
-           // CheckCfg();
+            Checkcfg_g();
             // init form layout
             this.Size = new Size(712, 543);
             panel2.Visible = false;
             panel3.Visible = false;
         }
 
-
-        //public void Checkcfg_g()
-        //{ 
-        //    // 暂定 检查其他配置项
-        //}
+        /// <summary>
+        /// 全局配置项检查
+        /// </summary>
+        public void Checkcfg_g()
+        {
+            // 显示[快速检查程序] 
+            string checkRapid = config.Read("cfgInit","ShowCheckRapid","0",cfgPath);
+            if (checkRapid == "1")
+            {
+                button_checkProgramm.Visible = true;
+            }
+            else button_checkProgramm.Visible = false;
+        }
         /// <summary>
         /// 检查是否存在已经应用自动连接的配置项
         /// </summary>
@@ -92,12 +102,11 @@ namespace rapid2Controler
             scanner = new NetworkScanner();
             scanner.Scan();
             controllers = scanner.Controllers;
-            Guid a = new Guid();
             string id = config.Read("ID","RobID","0",cfgPath);
-            a = Guid.Parse(id);
+            Guid a = Guid.Parse(id);
             foreach (ControllerInfo info in controllers)
             {
-                if (info.SystemId==a)
+                if (info.SystemId == a)
                 {
                     controller = Controller.Connect(a, ConnectionType.Standalone);
                     controller.Logon(UserInfo.DefaultUser);
@@ -107,12 +116,8 @@ namespace rapid2Controler
                     ShowNewMessage("已自动连接到控制器：" + id);
                     button_connect.Text = "     断开";
                 }
+                else { MessageBox.Show("未扫描到控制器或控制器ID不存在！","错误");}
             }
-            //   Controller.Connect(info.SystemId,ConnectionType.Standalone);
-        }
-
-        public void InitCfg()
-        {
         }
 
         private void button_Choosefile_Click(object sender, EventArgs e)
@@ -163,7 +168,10 @@ namespace rapid2Controler
             catch (InvalidOperationException ex) { label2_INFO.Text = (ex.Message + "上传失败"); setInfoColor(Color.FromArgb(205, 38, 38), Color.FromArgb(248, 248, 255)); }
             catch (Exception ex) { label2_INFO.Text = (ex.Message + "上传失败"); setInfoColor(Color.FromArgb(205, 38, 38), Color.FromArgb(248, 248, 255)); }
         }
-        // 扫描控制器 name + ip   controller.info
+       
+        /// <summary>
+        /// 扫描控制器
+        /// </summary>
         public void scanNetwork()
         {
             scanner = new NetworkScanner();
@@ -324,7 +332,11 @@ namespace rapid2Controler
             activeWindow(new sf_InputOutput()); 
         }
 
-        public void activeWindow(Form form) // 激活窗口方法 form 参数传入： new form();
+        /// <summary>
+        /// 激活子窗口
+        /// </summary>
+        /// <param name="form">参数传入： new form()</param>
+        public void activeWindow(Form form)
         {
             panel2.Visible = false;
             panel3.Visible = false;
@@ -440,16 +452,10 @@ namespace rapid2Controler
             else { System.Diagnostics.Process.Start(CodePath); }
         }
 
-        // TODO:  ControllerStateChangeEvent
-        public void Controller_StateChanged(object sender, StateChangedEventArgs e)
-            {
-              //  label_controllerState.Text = e.NewState.ToString();
-            }
-
         private void label_controllerState_Click(object sender, EventArgs e)
         {
             label_controllerState.Text ="当前控制器状态："+  controller.State.ToString();
-            // Controller_StateChanged
+            // TODO: 实时更新控制器状态
         }
         public void checkVisibleSonForm()
         {
@@ -529,7 +535,6 @@ namespace rapid2Controler
                         lines[a] = newValue;
                     }
                 }
-                // -----------------写入---------------------
                 File.WriteAllLines(strFilePath, lines);
             }
         }
@@ -555,7 +560,7 @@ namespace rapid2Controler
                     }
                 }
             }
-            catch (Exception ex) // 白鹿丶浔
+            catch (Exception ex)
             { MessageBox.Show(ex.Message,"错误"); }
         }
 
@@ -579,7 +584,6 @@ namespace rapid2Controler
  
                 using (Mastership m = Mastership.Request(controller.Rapid))
                 {
-                    //  controller.FileSystem.RemoteDirectory = "(HOME)$";
                     tRob1.LoadModuleFromFile(Path.GetFileName(filePath), ABB.Robotics.
                     Controllers.RapidDomain.RapidLoadMode.Replace);
                 }
@@ -621,13 +625,13 @@ namespace rapid2Controler
 
         private void button_resetPoint_Click(object sender, EventArgs e)
         {
-            if(ctrlCore.RAPID_ProgramReset(controller, "T_ROB1") != -1 || ctrlCore.RAPID_ProgramReset(controller, "T_ROB1")!=0)
+            if(ctrlCore.RAPID_ProgramReset(controller, "T_ROB1") != -1 && ctrlCore.RAPID_ProgramReset(controller,"T_ROB1")!=1)
             {
                 ShowNewMessage("程序指针复位成功。");
             }
             else
             {
-                label2_INFO.Text = "复位程序指针失败！";
+                label2_INFO.Text = "复位程序指针失败！是否开启自动模式？";
                 setInfoColor(Warning_BackColor,defaultforeColor);
             }
         }
@@ -649,7 +653,6 @@ namespace rapid2Controler
         {
             MessageContent = AMessage;
             button4_Click_1(null,null);
-            // 后续可添加 显示消息窗口 的图标， 警告 错误 啥的
         }
 
         // 隐藏到托盘
@@ -674,6 +677,60 @@ namespace rapid2Controler
             if (checkBox1.Checked == true)
             { config.Write("cfgInit", "AutoConnect", "1", cfgPath); }
             else { config.Write("cfgInit", "AutoConnect", "0", cfgPath); }
+        }
+
+        private void label_OpenCfgFile_Click(object sender, EventArgs e)
+        {
+            Process.Start(cfgPath);
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            Showimg(Resource_img.IOsheet1);
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            Showimg(Resource_img.CodeExample);
+        }
+
+        /// <summary>
+        /// 单独form显示img
+        /// </summary>
+        /// <param name="resourceImg">提供资源库中的一个image</param>
+        public void Showimg(Image resourceImg)
+        {
+            form_ShowImg form_ShowImg = new form_ShowImg();
+            form_ShowImg.Show();
+            form_ShowImg.Size = new Size(643, 877);
+            Image a = resourceImg;
+            form_ShowImg.BackgroundImage = a;
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            Showimg(Resource_img.PLCIOsheet);
+        }
+
+        private void listBox2_fileStore_DoubleClick(object sender, EventArgs e)
+        {
+            if (listBox2_fileStore.SelectedItem == null)
+            {
+                return;
+            }
+            else
+            {
+                string folderName = listBox2_fileStore.SelectedItem.ToString();
+                if (controller.FileSystem.DirectoryExists(controller.FileSystem.GetRemotePath(folderName)))
+                {
+
+                }
+                else
+                {
+                    MessageBox.Show("目录错误或不存在！");
+                }
+
+            }
         }
     }
 }

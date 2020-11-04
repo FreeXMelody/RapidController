@@ -19,7 +19,6 @@ namespace rapid2Controler
         {
             InitializeComponent();
             Point = new Point(Location.X, form1.button8.Location.Y);
-            //   animations.opacityChange(this);
         }
 
         private void timer_opacity_Tick(object sender, EventArgs e)
@@ -40,12 +39,10 @@ namespace rapid2Controler
             this.Size = new Size(label1.Size.Width +35,this.Size.Height);
             pictureBox2.Size = new Size(panel1.Size.Width-2, pictureBox2.Size.Height);
 
-            // this.Size = new Size(label1.Size.Width +30+34,this.Size.Height); // 适应“关闭”
             // 重设“关闭” 坐标  ---- 暂时不用，已设置visible为false
             // button1.Location = new Point(Size.Width-25,label1.Location.Y+2);
 
             this.Location = Form1.p2;
-            //animations.Win32.AnimateWindow(this.Handle, 2000, animations.Win32.AW_BLEND);
             timer_opacity.Interval = 20;
             timer_reduceOpacity.Interval = 20;
             timer_opacity.Start();

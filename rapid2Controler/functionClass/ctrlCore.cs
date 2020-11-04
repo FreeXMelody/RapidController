@@ -35,11 +35,13 @@ namespace rapid2Controler
                     controller.Rapid.GetTask(taskname).ResetProgramPointer();//复位程序指针
                     m.Release();
                 }
+                return 0;
             }
-            catch (Exception)
+            catch (Exception ex )
             {
+                MessageBox.Show(ex.Message,"错误");
             }
-            return 0;
+            return 1;
         }
 
 

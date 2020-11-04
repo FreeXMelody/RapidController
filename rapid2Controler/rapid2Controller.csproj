@@ -114,6 +114,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="form_ShowImg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form_ShowImg.Designer.cs">
+      <DependentUpon>form_ShowImg.cs</DependentUpon>
+    </Compile>
     <Compile Include="functionClass\animations.cs" />
     <Compile Include="customMessageBox.cs">
       <SubType>Form</SubType>
@@ -130,6 +136,11 @@
     <Compile Include="functionClass\config.cs" />
     <Compile Include="functionClass\DirectoriesControl.cs" />
     <Compile Include="functionClass\ctrlCore.cs" />
+    <Compile Include="imgs\Resource_img.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource_img.resx</DependentUpon>
+    </Compile>
     <Compile Include="sf_controllerWin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -158,6 +169,13 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form_ShowImg.resx">
+      <DependentUpon>form_ShowImg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="imgs\Resource_img.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource_img.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="sf_controllerWin.resx">
       <DependentUpon>sf_controllerWin.cs</DependentUpon>
@@ -194,6 +212,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="20200912024902609_easyicon_net_32.ico" />
+    <Content Include="imgs\CodeExample.png" />
+    <Content Include="imgs\IOsheet.jpg" />
+    <None Include="imgs\PLCIOsheet.jpg" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.8">

@@ -30,11 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.button_connect = new System.Windows.Forms.Button();
-            this.button_update = new System.Windows.Forms.Button();
-            this.button_Choosefile = new System.Windows.Forms.Button();
             this.openFileDialog_rapid = new System.Windows.Forms.OpenFileDialog();
-            this.button_updata = new System.Windows.Forms.Button();
             this.textBox_path = new System.Windows.Forms.TextBox();
             this.label2_INFO = new System.Windows.Forms.Label();
             this.listBox2_fileStore = new System.Windows.Forms.ListBox();
@@ -46,7 +42,6 @@
             this.button_data = new System.Windows.Forms.Button();
             this.button_min = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
@@ -57,9 +52,9 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button_exit = new System.Windows.Forms.Button();
             this.button_ConnectMenu = new System.Windows.Forms.Button();
-            this.label8 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label_OpenCfgFile = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.listView1 = new System.Windows.Forms.ListView();
@@ -69,7 +64,12 @@
             this.columnHeader4_sysInfo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5_ControllerID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6_Port = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.button_updata = new System.Windows.Forms.Button();
+            this.button_connect = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.button12 = new System.Windows.Forms.Button();
+            this.button11 = new System.Windows.Forms.Button();
+            this.button10 = new System.Windows.Forms.Button();
             this.button_resetPoint = new System.Windows.Forms.Button();
             this.button_loadModule = new System.Windows.Forms.Button();
             this.checkBox_InsertVar = new System.Windows.Forms.CheckBox();
@@ -81,6 +81,8 @@
             this.button7 = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.button6 = new System.Windows.Forms.Button();
+            this.button_Choosefile = new System.Windows.Forms.Button();
+            this.button_update = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.button8 = new System.Windows.Forms.Button();
             this.label_controllerState = new System.Windows.Forms.Label();
@@ -95,85 +97,9 @@
             this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
-            // button_connect
-            // 
-            this.button_connect.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-            this.button_connect.FlatAppearance.BorderSize = 0;
-            this.button_connect.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_connect.Font = new System.Drawing.Font("微软雅黑", 11F);
-            this.button_connect.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.button_connect.Image = ((System.Drawing.Image)(resources.GetObject("button_connect.Image")));
-            this.button_connect.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button_connect.Location = new System.Drawing.Point(225, 5);
-            this.button_connect.Name = "button_connect";
-            this.button_connect.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
-            this.button_connect.Size = new System.Drawing.Size(172, 40);
-            this.button_connect.TabIndex = 0;
-            this.button_connect.Text = "     连接\r\n";
-            this.button_connect.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button_connect.UseVisualStyleBackColor = false;
-            this.button_connect.Click += new System.EventHandler(this.button_connect_Click);
-            // 
-            // button_update
-            // 
-            this.button_update.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-            this.button_update.FlatAppearance.BorderSize = 0;
-            this.button_update.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_update.Font = new System.Drawing.Font("微软雅黑", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button_update.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.button_update.Image = ((System.Drawing.Image)(resources.GetObject("button_update.Image")));
-            this.button_update.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button_update.Location = new System.Drawing.Point(262, 14);
-            this.button_update.Name = "button_update";
-            this.button_update.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
-            this.button_update.Size = new System.Drawing.Size(172, 40);
-            this.button_update.TabIndex = 1;
-            this.button_update.Text = "     上传";
-            this.button_update.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button_update.UseVisualStyleBackColor = false;
-            this.button_update.Click += new System.EventHandler(this.button_update_Click);
-            // 
-            // button_Choosefile
-            // 
-            this.button_Choosefile.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-            this.button_Choosefile.FlatAppearance.BorderSize = 0;
-            this.button_Choosefile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_Choosefile.Font = new System.Drawing.Font("微软雅黑", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button_Choosefile.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.button_Choosefile.Image = ((System.Drawing.Image)(resources.GetObject("button_Choosefile.Image")));
-            this.button_Choosefile.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button_Choosefile.Location = new System.Drawing.Point(84, 14);
-            this.button_Choosefile.Name = "button_Choosefile";
-            this.button_Choosefile.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
-            this.button_Choosefile.Size = new System.Drawing.Size(172, 40);
-            this.button_Choosefile.TabIndex = 2;
-            this.button_Choosefile.Text = "     选择文件";
-            this.button_Choosefile.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button_Choosefile.UseVisualStyleBackColor = false;
-            this.button_Choosefile.Click += new System.EventHandler(this.button_Choosefile_Click);
-            // 
             // openFileDialog_rapid
             // 
             this.openFileDialog_rapid.FileName = "openFileDialog1";
-            // 
-            // button_updata
-            // 
-            this.button_updata.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-            this.button_updata.FlatAppearance.BorderSize = 0;
-            this.button_updata.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_updata.Font = new System.Drawing.Font("微软雅黑", 11F);
-            this.button_updata.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.button_updata.Image = ((System.Drawing.Image)(resources.GetObject("button_updata.Image")));
-            this.button_updata.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button_updata.Location = new System.Drawing.Point(47, 5);
-            this.button_updata.Name = "button_updata";
-            this.button_updata.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
-            this.button_updata.Size = new System.Drawing.Size(172, 40);
-            this.button_updata.TabIndex = 3;
-            this.button_updata.Text = "     扫描";
-            this.button_updata.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button_updata.UseVisualStyleBackColor = false;
-            this.button_updata.Click += new System.EventHandler(this.button_updata_Click);
             // 
             // textBox_path
             // 
@@ -199,9 +125,9 @@
             this.label2_INFO.ForeColor = System.Drawing.SystemColors.Window;
             this.label2_INFO.Location = new System.Drawing.Point(3, 4);
             this.label2_INFO.Name = "label2_INFO";
-            this.label2_INFO.Size = new System.Drawing.Size(164, 17);
+            this.label2_INFO.Size = new System.Drawing.Size(277, 17);
             this.label2_INFO.TabIndex = 8;
-            this.label2_INFO.Text = "info <Created by:Christer>";
+            this.label2_INFO.Text = "info <Created by:Christer \"啊~是文先森，wsl\">";
             // 
             // listBox2_fileStore
             // 
@@ -216,6 +142,7 @@
             this.listBox2_fileStore.Size = new System.Drawing.Size(350, 140);
             this.listBox2_fileStore.TabIndex = 10;
             this.listBox2_fileStore.SelectedIndexChanged += new System.EventHandler(this.listBox2_fileStore_SelectedIndexChanged);
+            this.listBox2_fileStore.DoubleClick += new System.EventHandler(this.listBox2_fileStore_DoubleClick);
             // 
             // button1
             // 
@@ -255,7 +182,6 @@
             this.panel1.Controls.Add(this.button_data);
             this.panel1.Controls.Add(this.button_min);
             this.panel1.Controls.Add(this.label6);
-            this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.panel6);
@@ -266,7 +192,6 @@
             this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.button_exit);
             this.panel1.Controls.Add(this.button_ConnectMenu);
-            this.panel1.Controls.Add(this.label8);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
@@ -282,7 +207,7 @@
             this.button9.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button9.Image = ((System.Drawing.Image)(resources.GetObject("button9.Image")));
             this.button9.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button9.Location = new System.Drawing.Point(0, 428);
+            this.button9.Location = new System.Drawing.Point(0, 430);
             this.button9.Name = "button9";
             this.button9.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.button9.Size = new System.Drawing.Size(172, 26);
@@ -339,7 +264,7 @@
             this.button_min.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button_min.Image = ((System.Drawing.Image)(resources.GetObject("button_min.Image")));
             this.button_min.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button_min.Location = new System.Drawing.Point(0, 396);
+            this.button_min.Location = new System.Drawing.Point(0, 398);
             this.button_min.Name = "button_min";
             this.button_min.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.button_min.Size = new System.Drawing.Size(172, 26);
@@ -352,34 +277,23 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("微软雅黑", 5.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label6.ForeColor = System.Drawing.Color.DimGray;
-            this.label6.Location = new System.Drawing.Point(10, 34);
+            this.label6.BackColor = System.Drawing.Color.Transparent;
+            this.label6.Font = new System.Drawing.Font("微软雅黑", 5.8F);
+            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label6.Location = new System.Drawing.Point(61, 48);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(156, 9);
+            this.label6.Size = new System.Drawing.Size(103, 22);
             this.label6.TabIndex = 11;
-            this.label6.Text = "Copyright © 2020 Fx.Lab. All rights reserved.";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label5.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label5.ForeColor = System.Drawing.Color.DimGray;
-            this.label5.Location = new System.Drawing.Point(71, 16);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(44, 17);
-            this.label5.TabIndex = 10;
-            this.label5.Text = "Fx.Lab";
+            this.label6.Text = "Copyright © 2020 Fx.Lab. \r\n     All rights reserved.";
             // 
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(29, -2);
+            this.pictureBox1.Location = new System.Drawing.Point(-3, 0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(61, 54);
+            this.pictureBox1.Size = new System.Drawing.Size(172, 66);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 9;
             this.pictureBox1.TabStop = false;
@@ -388,8 +302,8 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("微软雅黑", 13F);
-            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(241)))), ((int)(((byte)(241)))));
-            this.label4.Location = new System.Drawing.Point(25, 61);
+            this.label4.ForeColor = System.Drawing.Color.AliceBlue;
+            this.label4.Location = new System.Drawing.Point(25, 74);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(136, 24);
             this.label4.TabIndex = 8;
@@ -397,25 +311,25 @@
             // 
             // panel6
             // 
-            this.panel6.BackColor = System.Drawing.Color.Turquoise;
-            this.panel6.Location = new System.Drawing.Point(15, 64);
+            this.panel6.BackColor = System.Drawing.Color.Gray;
+            this.panel6.Location = new System.Drawing.Point(17, 77);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(10, 21);
+            this.panel6.Size = new System.Drawing.Size(6, 21);
             this.panel6.TabIndex = 7;
             // 
             // panel5
             // 
-            this.panel5.BackColor = System.Drawing.Color.Turquoise;
-            this.panel5.Location = new System.Drawing.Point(15, 198);
+            this.panel5.BackColor = System.Drawing.Color.Gray;
+            this.panel5.Location = new System.Drawing.Point(17, 198);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(10, 21);
+            this.panel5.Size = new System.Drawing.Size(6, 21);
             this.panel5.TabIndex = 6;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("微软雅黑", 13F);
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(241)))), ((int)(((byte)(241)))));
+            this.label3.ForeColor = System.Drawing.Color.AliceBlue;
             this.label3.Location = new System.Drawing.Point(25, 196);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(82, 24);
@@ -469,7 +383,7 @@
             this.button3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
             this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.Location = new System.Drawing.Point(0, 134);
+            this.button3.Location = new System.Drawing.Point(0, 147);
             this.button3.Name = "button3";
             this.button3.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.button3.Size = new System.Drawing.Size(172, 40);
@@ -508,25 +422,15 @@
             this.button_ConnectMenu.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button_ConnectMenu.Image = ((System.Drawing.Image)(resources.GetObject("button_ConnectMenu.Image")));
             this.button_ConnectMenu.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button_ConnectMenu.Location = new System.Drawing.Point(0, 88);
+            this.button_ConnectMenu.Location = new System.Drawing.Point(0, 101);
             this.button_ConnectMenu.Name = "button_ConnectMenu";
             this.button_ConnectMenu.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.button_ConnectMenu.Size = new System.Drawing.Size(172, 40);
             this.button_ConnectMenu.TabIndex = 0;
-            this.button_ConnectMenu.Text = "     连接";
+            this.button_ConnectMenu.Text = "     初始 /. 连接";
             this.button_ConnectMenu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button_ConnectMenu.UseVisualStyleBackColor = false;
             this.button_ConnectMenu.Click += new System.EventHandler(this.button_ConnectMenu_Click);
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(13, 386);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(143, 12);
-            this.label8.TabIndex = 16;
-            this.label8.Text = "-----------------------";
             // 
             // label1
             // 
@@ -542,6 +446,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.label_OpenCfgFile);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.checkBox1);
             this.panel2.Controls.Add(this.listView1);
@@ -550,8 +455,21 @@
             this.panel2.Controls.Add(this.button_connect);
             this.panel2.Location = new System.Drawing.Point(181, 12);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(454, 241);
+            this.panel2.Size = new System.Drawing.Size(454, 274);
             this.panel2.TabIndex = 16;
+            // 
+            // label_OpenCfgFile
+            // 
+            this.label_OpenCfgFile.AutoSize = true;
+            this.label_OpenCfgFile.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(153)))));
+            this.label_OpenCfgFile.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.label_OpenCfgFile.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
+            this.label_OpenCfgFile.Location = new System.Drawing.Point(9, 234);
+            this.label_OpenCfgFile.Name = "label_OpenCfgFile";
+            this.label_OpenCfgFile.Size = new System.Drawing.Size(80, 17);
+            this.label_OpenCfgFile.TabIndex = 22;
+            this.label_OpenCfgFile.Text = "打开配置文件";
+            this.label_OpenCfgFile.Click += new System.EventHandler(this.label_OpenCfgFile_Click);
             // 
             // label2
             // 
@@ -629,8 +547,49 @@
             // 
             this.columnHeader6_Port.Text = "端口";
             // 
+            // button_updata
+            // 
+            this.button_updata.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.button_updata.FlatAppearance.BorderSize = 0;
+            this.button_updata.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_updata.Font = new System.Drawing.Font("微软雅黑", 11F);
+            this.button_updata.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.button_updata.Image = ((System.Drawing.Image)(resources.GetObject("button_updata.Image")));
+            this.button_updata.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button_updata.Location = new System.Drawing.Point(47, 5);
+            this.button_updata.Name = "button_updata";
+            this.button_updata.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.button_updata.Size = new System.Drawing.Size(172, 40);
+            this.button_updata.TabIndex = 3;
+            this.button_updata.Text = "     扫描";
+            this.button_updata.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button_updata.UseVisualStyleBackColor = false;
+            this.button_updata.Click += new System.EventHandler(this.button_updata_Click);
+            // 
+            // button_connect
+            // 
+            this.button_connect.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.button_connect.FlatAppearance.BorderSize = 0;
+            this.button_connect.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_connect.Font = new System.Drawing.Font("微软雅黑", 11F);
+            this.button_connect.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.button_connect.Image = ((System.Drawing.Image)(resources.GetObject("button_connect.Image")));
+            this.button_connect.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button_connect.Location = new System.Drawing.Point(225, 5);
+            this.button_connect.Name = "button_connect";
+            this.button_connect.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.button_connect.Size = new System.Drawing.Size(172, 40);
+            this.button_connect.TabIndex = 0;
+            this.button_connect.Text = "     连接\r\n";
+            this.button_connect.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button_connect.UseVisualStyleBackColor = false;
+            this.button_connect.Click += new System.EventHandler(this.button_connect_Click);
+            // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.button12);
+            this.panel3.Controls.Add(this.button11);
+            this.panel3.Controls.Add(this.button10);
             this.panel3.Controls.Add(this.button_resetPoint);
             this.panel3.Controls.Add(this.button_loadModule);
             this.panel3.Controls.Add(this.checkBox_InsertVar);
@@ -650,6 +609,54 @@
             this.panel3.Size = new System.Drawing.Size(450, 487);
             this.panel3.TabIndex = 17;
             // 
+            // button12
+            // 
+            this.button12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(153)))), ((int)(((byte)(204)))));
+            this.button12.FlatAppearance.BorderSize = 0;
+            this.button12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button12.Font = new System.Drawing.Font("微软雅黑", 8F);
+            this.button12.ForeColor = System.Drawing.Color.White;
+            this.button12.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button12.Location = new System.Drawing.Point(3, 62);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(61, 22);
+            this.button12.TabIndex = 23;
+            this.button12.Text = "plcIO表";
+            this.button12.UseVisualStyleBackColor = false;
+            this.button12.Click += new System.EventHandler(this.button12_Click);
+            // 
+            // button11
+            // 
+            this.button11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(153)))), ((int)(((byte)(204)))));
+            this.button11.FlatAppearance.BorderSize = 0;
+            this.button11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button11.Font = new System.Drawing.Font("微软雅黑", 8F);
+            this.button11.ForeColor = System.Drawing.Color.White;
+            this.button11.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button11.Location = new System.Drawing.Point(3, 38);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(61, 22);
+            this.button11.TabIndex = 22;
+            this.button11.Text = "调用例图";
+            this.button11.UseVisualStyleBackColor = false;
+            this.button11.Click += new System.EventHandler(this.button11_Click);
+            // 
+            // button10
+            // 
+            this.button10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(153)))), ((int)(((byte)(204)))));
+            this.button10.FlatAppearance.BorderSize = 0;
+            this.button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button10.Font = new System.Drawing.Font("微软雅黑", 8F);
+            this.button10.ForeColor = System.Drawing.Color.White;
+            this.button10.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button10.Location = new System.Drawing.Point(3, 14);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(61, 22);
+            this.button10.TabIndex = 21;
+            this.button10.Text = "IO表";
+            this.button10.UseVisualStyleBackColor = false;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
+            // 
             // button_resetPoint
             // 
             this.button_resetPoint.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(153)))), ((int)(((byte)(204)))));
@@ -658,7 +665,7 @@
             this.button_resetPoint.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.button_resetPoint.ForeColor = System.Drawing.Color.White;
             this.button_resetPoint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button_resetPoint.Location = new System.Drawing.Point(4, 339);
+            this.button_resetPoint.Location = new System.Drawing.Point(3, 339);
             this.button_resetPoint.Name = "button_resetPoint";
             this.button_resetPoint.Size = new System.Drawing.Size(91, 22);
             this.button_resetPoint.TabIndex = 20;
@@ -674,7 +681,7 @@
             this.button_loadModule.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.button_loadModule.ForeColor = System.Drawing.Color.White;
             this.button_loadModule.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button_loadModule.Location = new System.Drawing.Point(4, 363);
+            this.button_loadModule.Location = new System.Drawing.Point(3, 363);
             this.button_loadModule.Name = "button_loadModule";
             this.button_loadModule.Size = new System.Drawing.Size(91, 22);
             this.button_loadModule.TabIndex = 19;
@@ -809,6 +816,44 @@
             this.button6.UseVisualStyleBackColor = false;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
+            // button_Choosefile
+            // 
+            this.button_Choosefile.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.button_Choosefile.FlatAppearance.BorderSize = 0;
+            this.button_Choosefile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_Choosefile.Font = new System.Drawing.Font("微软雅黑", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button_Choosefile.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.button_Choosefile.Image = ((System.Drawing.Image)(resources.GetObject("button_Choosefile.Image")));
+            this.button_Choosefile.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button_Choosefile.Location = new System.Drawing.Point(84, 14);
+            this.button_Choosefile.Name = "button_Choosefile";
+            this.button_Choosefile.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.button_Choosefile.Size = new System.Drawing.Size(172, 40);
+            this.button_Choosefile.TabIndex = 2;
+            this.button_Choosefile.Text = "     选择文件";
+            this.button_Choosefile.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button_Choosefile.UseVisualStyleBackColor = false;
+            this.button_Choosefile.Click += new System.EventHandler(this.button_Choosefile_Click);
+            // 
+            // button_update
+            // 
+            this.button_update.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.button_update.FlatAppearance.BorderSize = 0;
+            this.button_update.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_update.Font = new System.Drawing.Font("微软雅黑", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button_update.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.button_update.Image = ((System.Drawing.Image)(resources.GetObject("button_update.Image")));
+            this.button_update.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button_update.Location = new System.Drawing.Point(262, 14);
+            this.button_update.Name = "button_update";
+            this.button_update.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.button_update.Size = new System.Drawing.Size(172, 40);
+            this.button_update.TabIndex = 1;
+            this.button_update.Text = "     上传";
+            this.button_update.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button_update.UseVisualStyleBackColor = false;
+            this.button_update.Click += new System.EventHandler(this.button_update_Click);
+            // 
             // panel4
             // 
             this.panel4.Controls.Add(this.button8);
@@ -928,7 +973,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button_min;
@@ -951,7 +995,6 @@
         private System.Windows.Forms.CheckBox checkBox_InsertVar;
         private System.Windows.Forms.ColumnHeader columnHeader6_Port;
         private System.Windows.Forms.Button button_checkProgramm;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button button_loadModule;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button_resetPoint;
@@ -960,6 +1003,10 @@
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.NotifyIcon notifyIcon1;
+        private System.Windows.Forms.Label label_OpenCfgFile;
+        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.Button button12;
     }
 }
 

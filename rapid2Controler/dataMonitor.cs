@@ -62,7 +62,7 @@ namespace rapid2Controler
 
         private void button3_Click(object sender, EventArgs e)
         {
-            // 读取日志信息、 包括可能的错误信息。【代码错误行】
+            // 读取日志信息
             EventLogCategory[] _cats = controller.EventLog.GetCategories();
             listView1.Items.Clear();
             ListViewItem _item;
