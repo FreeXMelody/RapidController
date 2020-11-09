@@ -40,7 +40,6 @@ namespace rapid2Controler
             pictureBox2.Size = new Size(panel1.Size.Width-2, pictureBox2.Size.Height);
 
             // 重设“关闭” 坐标  ---- 暂时不用，已设置visible为false
-            // button1.Location = new Point(Size.Width-25,label1.Location.Y+2);
 
             this.Location = Form1.p2;
             timer_opacity.Interval = 20;

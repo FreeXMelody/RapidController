@@ -59,7 +59,6 @@ namespace rapid2Controler
         public Form1()
         {
             InitializeComponent();
-
             Checkcfg_g();
             // init form layout
             this.Size = new Size(712, 543);
@@ -74,7 +73,15 @@ namespace rapid2Controler
         {
             // 显示[快速检查程序] 
             string checkRapid = config.Read("cfgInit","ShowCheckRapid","0",cfgPath);
-            if (checkRapid == "1")
+            // 自动连接配置项
+            string a = config.Read("cfgInit", "AutoConnect", "0", cfgPath);
+
+            if (a == "1")
+            {
+                checkBox1.Checked = true;
+                CheckAutoConnectCfg();
+            }
+                if (checkRapid == "1")
             {
                 button_checkProgramm.Visible = true;
             }
@@ -85,16 +92,15 @@ namespace rapid2Controler
         /// </summary>
         public void CheckAutoConnectCfg()
         {
-            string a = config.Read("cfgInit", "AutoConnect", "0", cfgPath);
-            if (a == "1")
-            {
                 try
                 {
-                    checkBox1.Checked = true;
-                    AutoConnect();
+                    if (controller == null)
+                    {
+                        AutoConnect();
+                    }
+                    else { }
                 }
                 catch (Exception ex) { MessageBox.Show(ex.Message); }
-            }
         }
 
         public void AutoConnect()
@@ -113,10 +119,10 @@ namespace rapid2Controler
                     Text = "当前已自动连接：" + id;
                     label2_INFO.Text = "已连接。";
                     setInfoColor();
-                    ShowNewMessage("已自动连接到控制器：" + id);
+                    ShowNewMessage("ヽ(✿ﾟ▽ﾟ)ノ 成功连接到示教器啦：" + id);
                     button_connect.Text = "     断开";
                 }
-                else { MessageBox.Show("未扫描到控制器或控制器ID不存在！","错误");}
+                else { MessageBox.Show("(ノへ￣、) 未扫描到控制器或控制器ID不存在，请检查配置文件！", "自动连接错误");}
             }
         }
 
@@ -236,8 +242,8 @@ namespace rapid2Controler
         private void button1_Click(object sender, EventArgs e)
         {
             listBox2_fileStore.Items.Clear(); // 清空，重置
-            ControllerFileSystemInfo[] Anarray; // 建立数组
-            Anarray = controller.FileSystem.GetFilesAndDirectories("*"); // 匹配所有文件及其目录
+            ControllerFileSystemInfo[] Anarray; 
+            Anarray = controller.FileSystem.GetFilesAndDirectories("*"); // 匹配所有文件及目录
             for (int i = 0; i < Anarray.Length; i++)
             {
                 listBox2_fileStore.Items.Add(Anarray[i].FullName.Split('/').Last()); 
@@ -265,7 +271,7 @@ namespace rapid2Controler
 
         private void button4_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("确定要退出吗,你是不是手滑了？← ←、", "我要关闭！", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("确定要退出吗,你是不是手滑了？（*゜ー゜*）", "我要关闭！", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 this.Close();
             }
@@ -298,8 +304,6 @@ namespace rapid2Controler
 
         private void button_ConnectMenu_Click(object sender, EventArgs e)
         {
-            CheckAutoConnectCfg();
-
             new sf_InputOutput().Close();
             panel3.Visible = false;
             panel2.Enabled = true;
@@ -531,7 +535,7 @@ namespace rapid2Controler
                         }
                     }
                     if (lines[a].Contains("!" + strIndex))
-                    {// 替换 + 插入 新值
+                    {// 替换、插入新值
                         lines[a] = newValue;
                     }
                 }
@@ -714,23 +718,23 @@ namespace rapid2Controler
 
         private void listBox2_fileStore_DoubleClick(object sender, EventArgs e)
         {
-            if (listBox2_fileStore.SelectedItem == null)
-            {
-                return;
-            }
-            else
-            {
-                string folderName = listBox2_fileStore.SelectedItem.ToString();
-                if (controller.FileSystem.DirectoryExists(controller.FileSystem.GetRemotePath(folderName)))
-                {
+            //if (listBox2_fileStore.SelectedItem == null)
+            //{
+            //    return;
+            //}
+            //else
+            //{
+            //    string folderName = listBox2_fileStore.SelectedItem.ToString();
+            //    if (controller.FileSystem.DirectoryExists(controller.FileSystem.GetRemotePath(folderName)))
+            //    {
 
-                }
-                else
-                {
-                    MessageBox.Show("目录错误或不存在！");
-                }
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show("目录错误或不存在！");
+            //    }
 
-            }
+            //}
         }
     }
 }

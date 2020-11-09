@@ -80,37 +80,38 @@
             // textBox_rapidType
             // 
             this.textBox_rapidType.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox_rapidType.Location = new System.Drawing.Point(5, 151);
+            this.textBox_rapidType.Location = new System.Drawing.Point(5, 143);
             this.textBox_rapidType.Multiline = true;
             this.textBox_rapidType.Name = "textBox_rapidType";
-            this.textBox_rapidType.Size = new System.Drawing.Size(100, 13);
+            this.textBox_rapidType.Size = new System.Drawing.Size(100, 20);
             this.textBox_rapidType.TabIndex = 10;
             // 
             // textBox_symbolType
             // 
             this.textBox_symbolType.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox_symbolType.Location = new System.Drawing.Point(5, 132);
+            this.textBox_symbolType.Location = new System.Drawing.Point(5, 124);
             this.textBox_symbolType.Multiline = true;
             this.textBox_symbolType.Name = "textBox_symbolType";
-            this.textBox_symbolType.Size = new System.Drawing.Size(100, 13);
+            this.textBox_symbolType.Size = new System.Drawing.Size(100, 20);
             this.textBox_symbolType.TabIndex = 9;
             // 
             // textBox_varValue
             // 
             this.textBox_varValue.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox_varValue.Location = new System.Drawing.Point(5, 113);
+            this.textBox_varValue.Location = new System.Drawing.Point(5, 105);
             this.textBox_varValue.Multiline = true;
             this.textBox_varValue.Name = "textBox_varValue";
-            this.textBox_varValue.Size = new System.Drawing.Size(100, 13);
+            this.textBox_varValue.Size = new System.Drawing.Size(100, 20);
             this.textBox_varValue.TabIndex = 8;
             // 
             // textBox_varName
             // 
             this.textBox_varName.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox_varName.Location = new System.Drawing.Point(5, 94);
+            this.textBox_varName.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.textBox_varName.Location = new System.Drawing.Point(5, 86);
             this.textBox_varName.Multiline = true;
             this.textBox_varName.Name = "textBox_varName";
-            this.textBox_varName.Size = new System.Drawing.Size(100, 13);
+            this.textBox_varName.Size = new System.Drawing.Size(100, 20);
             this.textBox_varName.TabIndex = 7;
             // 
             // button2
