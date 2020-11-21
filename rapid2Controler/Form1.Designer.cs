@@ -67,7 +67,8 @@
             this.button_updata = new System.Windows.Forms.Button();
             this.button_connect = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.textBox_fileName = new System.Windows.Forms.TextBox();
+            this.button_refreshModFiles = new System.Windows.Forms.Button();
+            this.listBox_moduleList = new System.Windows.Forms.ListBox();
             this.button_saveModule = new System.Windows.Forms.Button();
             this.button_resetPoint = new System.Windows.Forms.Button();
             this.button_loadModule = new System.Windows.Forms.Button();
@@ -82,16 +83,13 @@
             this.button6 = new System.Windows.Forms.Button();
             this.button_Choosefile = new System.Windows.Forms.Button();
             this.button_update = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.button8 = new System.Windows.Forms.Button();
             this.label_controllerState = new System.Windows.Forms.Label();
             this.panel_sonForm = new System.Windows.Forms.Panel();
             this.button4 = new System.Windows.Forms.Button();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
-            this.listBox_moduleList = new System.Windows.Forms.ListBox();
-            this.button_refreshModFiles = new System.Windows.Forms.Button();
-            this.label8 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -592,7 +590,6 @@
             // 
             this.panel3.Controls.Add(this.button_refreshModFiles);
             this.panel3.Controls.Add(this.listBox_moduleList);
-            this.panel3.Controls.Add(this.textBox_fileName);
             this.panel3.Controls.Add(this.button_saveModule);
             this.panel3.Controls.Add(this.button_resetPoint);
             this.panel3.Controls.Add(this.button_loadModule);
@@ -608,21 +605,40 @@
             this.panel3.Controls.Add(this.listBox2_fileStore);
             this.panel3.Controls.Add(this.button2);
             this.panel3.Controls.Add(this.button1);
-            this.panel3.Controls.Add(this.label5);
             this.panel3.Controls.Add(this.label8);
             this.panel3.Location = new System.Drawing.Point(641, 12);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(450, 487);
             this.panel3.TabIndex = 17;
             // 
-            // textBox_fileName
+            // button_refreshModFiles
             // 
-            this.textBox_fileName.Location = new System.Drawing.Point(40, 321);
-            this.textBox_fileName.Multiline = true;
-            this.textBox_fileName.Name = "textBox_fileName";
-            this.textBox_fileName.Size = new System.Drawing.Size(45, 15);
-            this.textBox_fileName.TabIndex = 25;
-            this.textBox_fileName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.button_refreshModFiles.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(153)))), ((int)(((byte)(204)))));
+            this.button_refreshModFiles.FlatAppearance.BorderSize = 0;
+            this.button_refreshModFiles.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_refreshModFiles.Font = new System.Drawing.Font("微软雅黑", 8F);
+            this.button_refreshModFiles.ForeColor = System.Drawing.Color.White;
+            this.button_refreshModFiles.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button_refreshModFiles.Location = new System.Drawing.Point(18, 269);
+            this.button_refreshModFiles.Name = "button_refreshModFiles";
+            this.button_refreshModFiles.Size = new System.Drawing.Size(61, 22);
+            this.button_refreshModFiles.TabIndex = 28;
+            this.button_refreshModFiles.Text = "刷新列表";
+            this.button_refreshModFiles.UseVisualStyleBackColor = false;
+            this.button_refreshModFiles.Click += new System.EventHandler(this.button_refreshModFiles_Click);
+            // 
+            // listBox_moduleList
+            // 
+            this.listBox_moduleList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(153)))));
+            this.listBox_moduleList.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listBox_moduleList.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.listBox_moduleList.ForeColor = System.Drawing.SystemColors.Window;
+            this.listBox_moduleList.FormattingEnabled = true;
+            this.listBox_moduleList.ItemHeight = 20;
+            this.listBox_moduleList.Location = new System.Drawing.Point(3, 22);
+            this.listBox_moduleList.Name = "listBox_moduleList";
+            this.listBox_moduleList.Size = new System.Drawing.Size(96, 240);
+            this.listBox_moduleList.TabIndex = 27;
             // 
             // button_saveModule
             // 
@@ -704,7 +720,7 @@
             this.groupBox1.Controls.Add(this.button_insert);
             this.groupBox1.Controls.Add(this.listBox_insertedCodelist);
             this.groupBox1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.groupBox1.Location = new System.Drawing.Point(129, 346);
+            this.groupBox1.Location = new System.Drawing.Point(137, 328);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(252, 107);
             this.groupBox1.TabIndex = 16;
@@ -837,16 +853,16 @@
             this.button_update.UseVisualStyleBackColor = false;
             this.button_update.Click += new System.EventHandler(this.button_update_Click);
             // 
-            // label5
+            // label8
             // 
-            this.label5.AutoSize = true;
-            this.label5.Cursor = System.Windows.Forms.Cursors.Default;
-            this.label5.Font = new System.Drawing.Font("微软雅黑", 6.75F);
-            this.label5.Location = new System.Drawing.Point(5, 320);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(36, 14);
-            this.label5.TabIndex = 26;
-            this.label5.Text = "文件名:";
+            this.label8.AutoSize = true;
+            this.label8.Cursor = System.Windows.Forms.Cursors.Default;
+            this.label8.Font = new System.Drawing.Font("微软雅黑", 7F);
+            this.label8.Location = new System.Drawing.Point(1, 6);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(58, 16);
+            this.label8.TabIndex = 29;
+            this.label8.Text = "模块列表：";
             // 
             // panel4
             // 
@@ -905,46 +921,6 @@
             this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
             this.notifyIcon1.Text = "RapidController";
             this.notifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseDoubleClick);
-            // 
-            // listBox_moduleList
-            // 
-            this.listBox_moduleList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(153)))));
-            this.listBox_moduleList.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listBox_moduleList.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.listBox_moduleList.ForeColor = System.Drawing.SystemColors.Window;
-            this.listBox_moduleList.FormattingEnabled = true;
-            this.listBox_moduleList.ItemHeight = 20;
-            this.listBox_moduleList.Location = new System.Drawing.Point(3, 22);
-            this.listBox_moduleList.Name = "listBox_moduleList";
-            this.listBox_moduleList.Size = new System.Drawing.Size(96, 240);
-            this.listBox_moduleList.TabIndex = 27;
-            // 
-            // button_refreshModFiles
-            // 
-            this.button_refreshModFiles.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(153)))), ((int)(((byte)(204)))));
-            this.button_refreshModFiles.FlatAppearance.BorderSize = 0;
-            this.button_refreshModFiles.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_refreshModFiles.Font = new System.Drawing.Font("微软雅黑", 8F);
-            this.button_refreshModFiles.ForeColor = System.Drawing.Color.White;
-            this.button_refreshModFiles.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button_refreshModFiles.Location = new System.Drawing.Point(18, 269);
-            this.button_refreshModFiles.Name = "button_refreshModFiles";
-            this.button_refreshModFiles.Size = new System.Drawing.Size(61, 22);
-            this.button_refreshModFiles.TabIndex = 28;
-            this.button_refreshModFiles.Text = "刷新列表";
-            this.button_refreshModFiles.UseVisualStyleBackColor = false;
-            this.button_refreshModFiles.Click += new System.EventHandler(this.button_refreshModFiles_Click);
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Cursor = System.Windows.Forms.Cursors.Default;
-            this.label8.Font = new System.Drawing.Font("微软雅黑", 7F);
-            this.label8.Location = new System.Drawing.Point(1, 6);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(58, 16);
-            this.label8.TabIndex = 29;
-            this.label8.Text = "模块列表：";
             // 
             // Form1
             // 
@@ -1039,8 +1015,6 @@
         private System.Windows.Forms.NotifyIcon notifyIcon1;
         private System.Windows.Forms.Label label_OpenCfgFile;
         private System.Windows.Forms.Button button_saveModule;
-        private System.Windows.Forms.TextBox textBox_fileName;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ListBox listBox_moduleList;
         private System.Windows.Forms.Button button_refreshModFiles;
         private System.Windows.Forms.Label label8;
