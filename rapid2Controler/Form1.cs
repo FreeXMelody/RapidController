@@ -19,7 +19,6 @@ using ABB.Robotics.Controllers.FileSystemDomain;
 using ABB.Robotics.Controllers.MotionDomain;
 using ABB.Robotics.Controllers.RapidDomain;
 using rapid2Controler.functionClass;
-using rapid2Controler.imgs;
 
 namespace rapid2Controler
 {
@@ -30,7 +29,6 @@ namespace rapid2Controler
         public static Controller controller;
         public ControllerInfoCollection controllers;
         public string fileName = "";
-        public const string Prefix = "";
         public bool activeForm = false;
         public Color defaultBackColor = Color.FromArgb(51, 153, 153);
         // 默认文字颜色 defaultforeColor
@@ -75,7 +73,10 @@ namespace rapid2Controler
             string checkRapid = config.Read("cfgInit","ShowCheckRapid","0",cfgPath);
             // 自动连接配置项
             string a = config.Read("cfgInit", "AutoConnect", "0", cfgPath);
-
+            // 显示[ 复位程序指针]
+            string ShowPointer = config.Read("cfgInit", "ShowResetPointer","0",cfgPath);
+            // 显示表单 ShowAllSheets
+            string ShowSheets = config.Read("cfgInit", "ShowAllSheets", "0", cfgPath);
             if (a == "1")
             {
                 checkBox1.Checked = true;
@@ -86,6 +87,12 @@ namespace rapid2Controler
                 button_checkProgramm.Visible = true;
             }
             else button_checkProgramm.Visible = false;
+            if (ShowPointer == "1")
+            {
+                button_resetPoint.Visible = true;
+            }
+            else button_resetPoint.Visible = false;
+
         }
         /// <summary>
         /// 检查是否存在已经应用自动连接的配置项
@@ -114,9 +121,9 @@ namespace rapid2Controler
             {
                 if (info.SystemId == a)
                 {
-                    controller = Controller.Connect(a, ConnectionType.Standalone);
+                    controller = Controller.Connect(info.SystemId, ConnectionType.Standalone);
                     controller.Logon(UserInfo.DefaultUser);
-                    Text = "当前已自动连接：" + id;
+                    Text = "当前已自动连接 ID：" + id + "    IP:" + info.IPAddress.ToString() + "    Port:"+info.WebServicesPort.ToString();
                     label2_INFO.Text = "已连接。";
                     setInfoColor();
                     ShowNewMessage("ヽ(✿ﾟ▽ﾟ)ノ 成功连接到示教器啦：" + id);
@@ -293,7 +300,7 @@ namespace rapid2Controler
 
                 panelA.Size = new Size(524, 462);
                 panelA.Location = new Point(172, 0);
-                panelA.Controls.Clear(); // 清除
+                panelA.Controls.Clear(); 
                 formA.TopLevel = false;
                 formA.FormBorderStyle = FormBorderStyle.None;
                 formA.Parent = panelA;
@@ -339,7 +346,7 @@ namespace rapid2Controler
         /// <summary>
         /// 激活子窗口
         /// </summary>
-        /// <param name="form">参数传入： new form()</param>
+        /// <param name="form">form对象</param>
         public void activeWindow(Form form)
         {
             panel2.Visible = false;
@@ -458,8 +465,15 @@ namespace rapid2Controler
 
         private void label_controllerState_Click(object sender, EventArgs e)
         {
-            label_controllerState.Text ="当前控制器状态："+  controller.State.ToString();
-            // TODO: 实时更新控制器状态
+            try
+            {
+                label_controllerState.Text = "当前控制器状态：" + controller.State.ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            // TODO: 实时更新控制器状态 
         }
         public void checkVisibleSonForm()
         {
@@ -550,7 +564,7 @@ namespace rapid2Controler
                 tRob1 = controller.Rapid.GetTask("T_ROB1");
                 ReadOnlyCollection<ProgramError> errors = tRob1.CheckProgram().Errors;
                 if (errors == null)
-                { MessageBox.Show("哎哟不错喔，未检查到程序错误！"); }
+                { MessageBox.Show("可以···未检查到程序错误！"); }
                 else
                 {
 
@@ -574,27 +588,24 @@ namespace rapid2Controler
         }
 
         /// <summary>
-        /// 加载控制器上的rapid程序 --- 第二版？hhh
+        /// 加载控制器上的rapid程序
         /// </summary>
         void loadModule()
         {
-            tRob1 = controller.Rapid.GetTask("T_ROB1");
-
             try
             {
+                tRob1 = controller.Rapid.GetTask("T_ROB1");
                 string filePath = controller.FileSystem.GetRemotePath(listBox2_fileStore.SelectedItem.ToString());
                 Console.WriteLine("目录：" + filePath);
                 string ProgramFileName = Path.ChangeExtension(filePath, ".mod");
- 
-                using (Mastership m = Mastership.Request(controller.Rapid))
+                using (Mastership m = Mastership.Request(controller))
                 {
-                    tRob1.LoadModuleFromFile(Path.GetFileName(filePath), ABB.Robotics.
-                    Controllers.RapidDomain.RapidLoadMode.Replace);
+                    tRob1.LoadModuleFromFile(Path.GetFileName(filePath), RapidLoadMode.Replace);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("发生异常," + ex.Message);
+                MessageBox.Show( ex.Message,"错误");
             }
         }
 
@@ -616,11 +627,11 @@ namespace rapid2Controler
                     MessageBox.Show("需要打开自动模式");
                 }
             }
-            catch (System.InvalidOperationException ex)
+            catch (InvalidOperationException ex)
             {
                 MessageBox.Show("Mastership problem." + ex.Message);
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show("Unexpected error occurred: " + ex.Message);
             }
@@ -629,15 +640,7 @@ namespace rapid2Controler
 
         private void button_resetPoint_Click(object sender, EventArgs e)
         {
-            if(ctrlCore.RAPID_ProgramReset(controller, "T_ROB1") != -1 && ctrlCore.RAPID_ProgramReset(controller,"T_ROB1")!=1)
-            {
-                ShowNewMessage("程序指针复位成功。");
-            }
-            else
-            {
-                label2_INFO.Text = "复位程序指针失败！是否开启自动模式？";
-                setInfoColor(Warning_BackColor,defaultforeColor);
-            }
+            ctrlCore.RAPID_ProgramReset(controller, "T_ROB1");
         }
 
         private void button4_Click_1(object sender, EventArgs e)
@@ -688,15 +691,7 @@ namespace rapid2Controler
             Process.Start(cfgPath);
         }
 
-        private void button10_Click(object sender, EventArgs e)
-        {
-            Showimg(Resource_img.IOsheet1);
-        }
 
-        private void button11_Click(object sender, EventArgs e)
-        {
-            Showimg(Resource_img.CodeExample);
-        }
 
         /// <summary>
         /// 单独form显示img
@@ -711,30 +706,61 @@ namespace rapid2Controler
             form_ShowImg.BackgroundImage = a;
         }
 
-        private void button12_Click(object sender, EventArgs e)
-        {
-            Showimg(Resource_img.PLCIOsheet);
-        }
-
         private void listBox2_fileStore_DoubleClick(object sender, EventArgs e)
         {
-            //if (listBox2_fileStore.SelectedItem == null)
-            //{
-            //    return;
-            //}
-            //else
-            //{
-            //    string folderName = listBox2_fileStore.SelectedItem.ToString();
-            //    if (controller.FileSystem.DirectoryExists(controller.FileSystem.GetRemotePath(folderName)))
-            //    {
+            //TODO: 载入新目录
+           // string dir = controller.FileSystem.GetRemotePath(listBox2_fileStore.SelectedItem.ToString());
+           //dir.
+           // controller.FileSystem.GetFile
 
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("目录错误或不存在！");
-            //    }
+        }
 
-            //}
+        private void refreshModuleList()
+        {
+            listBox_moduleList.Items.Clear();
+
+            tRob1 = controller.Rapid.GetTask("T_ROB1");
+            Module[] module = tRob1.GetModules();
+
+            foreach (Module modFiles in module)
+            {
+                listBox_moduleList.Items.Add(modFiles) ;
+            }
+
+        }
+
+        private void button_saveModule_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (Mastership m = Mastership.Request(controller))
+                {
+                    Module module = (Module)listBox_moduleList.SelectedItem;
+                    module.SaveToFile(controller.FileSystem.RemoteDirectory);
+                    //   tRob1.SaveProgramToFile(controller.FileSystem.LocalDirectory);
+                    // + @"\" + textBox_fileName.Text +".mod"
+                    ShowNewMessage("保存完毕啦···目录：" + controller.FileSystem.LocalDirectory);
+                    m.Release();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message,"保存发生错误");
+            }
+        }
+
+        private void button_refreshModFiles_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                refreshModuleList();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
     }
 }
+

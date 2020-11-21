@@ -67,9 +67,8 @@
             this.button_updata = new System.Windows.Forms.Button();
             this.button_connect = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.button12 = new System.Windows.Forms.Button();
-            this.button11 = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
+            this.textBox_fileName = new System.Windows.Forms.TextBox();
+            this.button_saveModule = new System.Windows.Forms.Button();
             this.button_resetPoint = new System.Windows.Forms.Button();
             this.button_loadModule = new System.Windows.Forms.Button();
             this.checkBox_InsertVar = new System.Windows.Forms.CheckBox();
@@ -83,12 +82,16 @@
             this.button6 = new System.Windows.Forms.Button();
             this.button_Choosefile = new System.Windows.Forms.Button();
             this.button_update = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.button8 = new System.Windows.Forms.Button();
             this.label_controllerState = new System.Windows.Forms.Label();
             this.panel_sonForm = new System.Windows.Forms.Panel();
             this.button4 = new System.Windows.Forms.Button();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.listBox_moduleList = new System.Windows.Forms.ListBox();
+            this.button_refreshModFiles = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -109,9 +112,9 @@
             this.textBox_path.Cursor = System.Windows.Forms.Cursors.Cross;
             this.textBox_path.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.textBox_path.ForeColor = System.Drawing.Color.Teal;
-            this.textBox_path.Location = new System.Drawing.Point(84, 60);
+            this.textBox_path.Location = new System.Drawing.Point(101, 60);
             this.textBox_path.Name = "textBox_path";
-            this.textBox_path.Size = new System.Drawing.Size(350, 22);
+            this.textBox_path.Size = new System.Drawing.Size(316, 22);
             this.textBox_path.TabIndex = 4;
             this.textBox_path.Text = "当前路径 < 准备中";
             this.textBox_path.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -137,9 +140,9 @@
             this.listBox2_fileStore.ForeColor = System.Drawing.SystemColors.Window;
             this.listBox2_fileStore.FormattingEnabled = true;
             this.listBox2_fileStore.ItemHeight = 20;
-            this.listBox2_fileStore.Location = new System.Drawing.Point(84, 134);
+            this.listBox2_fileStore.Location = new System.Drawing.Point(101, 122);
             this.listBox2_fileStore.Name = "listBox2_fileStore";
-            this.listBox2_fileStore.Size = new System.Drawing.Size(350, 140);
+            this.listBox2_fileStore.Size = new System.Drawing.Size(316, 140);
             this.listBox2_fileStore.TabIndex = 10;
             this.listBox2_fileStore.SelectedIndexChanged += new System.EventHandler(this.listBox2_fileStore_SelectedIndexChanged);
             this.listBox2_fileStore.DoubleClick += new System.EventHandler(this.listBox2_fileStore_DoubleClick);
@@ -151,9 +154,9 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("微软雅黑", 11.25F);
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(84, 88);
+            this.button1.Location = new System.Drawing.Point(101, 88);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(172, 40);
+            this.button1.Size = new System.Drawing.Size(155, 27);
             this.button1.TabIndex = 11;
             this.button1.Text = "扫描HOME目录";
             this.button1.UseVisualStyleBackColor = false;
@@ -166,9 +169,9 @@
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("微软雅黑", 11.25F);
             this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(262, 88);
+            this.button2.Location = new System.Drawing.Point(262, 89);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(172, 40);
+            this.button2.Size = new System.Drawing.Size(155, 27);
             this.button2.TabIndex = 12;
             this.button2.Text = "删除选定文件";
             this.button2.UseVisualStyleBackColor = false;
@@ -210,7 +213,7 @@
             this.button9.Location = new System.Drawing.Point(0, 430);
             this.button9.Name = "button9";
             this.button9.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
-            this.button9.Size = new System.Drawing.Size(172, 26);
+            this.button9.Size = new System.Drawing.Size(172, 28);
             this.button9.TabIndex = 22;
             this.button9.Text = "       最小化到托盘";
             this.button9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -264,10 +267,10 @@
             this.button_min.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button_min.Image = ((System.Drawing.Image)(resources.GetObject("button_min.Image")));
             this.button_min.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button_min.Location = new System.Drawing.Point(0, 398);
+            this.button_min.Location = new System.Drawing.Point(0, 396);
             this.button_min.Name = "button_min";
             this.button_min.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
-            this.button_min.Size = new System.Drawing.Size(172, 26);
+            this.button_min.Size = new System.Drawing.Size(172, 28);
             this.button_min.TabIndex = 12;
             this.button_min.Text = "       最小化";
             this.button_min.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -587,9 +590,10 @@
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.button12);
-            this.panel3.Controls.Add(this.button11);
-            this.panel3.Controls.Add(this.button10);
+            this.panel3.Controls.Add(this.button_refreshModFiles);
+            this.panel3.Controls.Add(this.listBox_moduleList);
+            this.panel3.Controls.Add(this.textBox_fileName);
+            this.panel3.Controls.Add(this.button_saveModule);
             this.panel3.Controls.Add(this.button_resetPoint);
             this.panel3.Controls.Add(this.button_loadModule);
             this.panel3.Controls.Add(this.checkBox_InsertVar);
@@ -604,58 +608,37 @@
             this.panel3.Controls.Add(this.listBox2_fileStore);
             this.panel3.Controls.Add(this.button2);
             this.panel3.Controls.Add(this.button1);
+            this.panel3.Controls.Add(this.label5);
+            this.panel3.Controls.Add(this.label8);
             this.panel3.Location = new System.Drawing.Point(641, 12);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(450, 487);
             this.panel3.TabIndex = 17;
             // 
-            // button12
+            // textBox_fileName
             // 
-            this.button12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(153)))), ((int)(((byte)(204)))));
-            this.button12.FlatAppearance.BorderSize = 0;
-            this.button12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button12.Font = new System.Drawing.Font("微软雅黑", 8F);
-            this.button12.ForeColor = System.Drawing.Color.White;
-            this.button12.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button12.Location = new System.Drawing.Point(3, 62);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(61, 22);
-            this.button12.TabIndex = 23;
-            this.button12.Text = "plcIO表";
-            this.button12.UseVisualStyleBackColor = false;
-            this.button12.Click += new System.EventHandler(this.button12_Click);
+            this.textBox_fileName.Location = new System.Drawing.Point(40, 321);
+            this.textBox_fileName.Multiline = true;
+            this.textBox_fileName.Name = "textBox_fileName";
+            this.textBox_fileName.Size = new System.Drawing.Size(45, 15);
+            this.textBox_fileName.TabIndex = 25;
+            this.textBox_fileName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // button11
+            // button_saveModule
             // 
-            this.button11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(153)))), ((int)(((byte)(204)))));
-            this.button11.FlatAppearance.BorderSize = 0;
-            this.button11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button11.Font = new System.Drawing.Font("微软雅黑", 8F);
-            this.button11.ForeColor = System.Drawing.Color.White;
-            this.button11.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button11.Location = new System.Drawing.Point(3, 38);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(61, 22);
-            this.button11.TabIndex = 22;
-            this.button11.Text = "调用例图";
-            this.button11.UseVisualStyleBackColor = false;
-            this.button11.Click += new System.EventHandler(this.button11_Click);
-            // 
-            // button10
-            // 
-            this.button10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(153)))), ((int)(((byte)(204)))));
-            this.button10.FlatAppearance.BorderSize = 0;
-            this.button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button10.Font = new System.Drawing.Font("微软雅黑", 8F);
-            this.button10.ForeColor = System.Drawing.Color.White;
-            this.button10.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button10.Location = new System.Drawing.Point(3, 14);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(61, 22);
-            this.button10.TabIndex = 21;
-            this.button10.Text = "IO表";
-            this.button10.UseVisualStyleBackColor = false;
-            this.button10.Click += new System.EventHandler(this.button10_Click);
+            this.button_saveModule.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(153)))), ((int)(((byte)(204)))));
+            this.button_saveModule.FlatAppearance.BorderSize = 0;
+            this.button_saveModule.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_saveModule.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.button_saveModule.ForeColor = System.Drawing.Color.White;
+            this.button_saveModule.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button_saveModule.Location = new System.Drawing.Point(3, 339);
+            this.button_saveModule.Name = "button_saveModule";
+            this.button_saveModule.Size = new System.Drawing.Size(91, 22);
+            this.button_saveModule.TabIndex = 24;
+            this.button_saveModule.Text = "保存当前模块";
+            this.button_saveModule.UseVisualStyleBackColor = false;
+            this.button_saveModule.Click += new System.EventHandler(this.button_saveModule_Click);
             // 
             // button_resetPoint
             // 
@@ -665,7 +648,7 @@
             this.button_resetPoint.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.button_resetPoint.ForeColor = System.Drawing.Color.White;
             this.button_resetPoint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button_resetPoint.Location = new System.Drawing.Point(3, 339);
+            this.button_resetPoint.Location = new System.Drawing.Point(3, 293);
             this.button_resetPoint.Name = "button_resetPoint";
             this.button_resetPoint.Size = new System.Drawing.Size(91, 22);
             this.button_resetPoint.TabIndex = 20;
@@ -721,7 +704,7 @@
             this.groupBox1.Controls.Add(this.button_insert);
             this.groupBox1.Controls.Add(this.listBox_insertedCodelist);
             this.groupBox1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.groupBox1.Location = new System.Drawing.Point(133, 339);
+            this.groupBox1.Location = new System.Drawing.Point(129, 346);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(252, 107);
             this.groupBox1.TabIndex = 16;
@@ -777,7 +760,7 @@
             this.button7.ForeColor = System.Drawing.Color.White;
             this.button7.Image = ((System.Drawing.Image)(resources.GetObject("button7.Image")));
             this.button7.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button7.Location = new System.Drawing.Point(101, 280);
+            this.button7.Location = new System.Drawing.Point(101, 268);
             this.button7.Name = "button7";
             this.button7.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.button7.Size = new System.Drawing.Size(155, 27);
@@ -792,7 +775,7 @@
             this.label7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(153)))));
             this.label7.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(115, 310);
+            this.label7.Location = new System.Drawing.Point(115, 298);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(292, 17);
             this.label7.TabIndex = 14;
@@ -807,7 +790,7 @@
             this.button6.ForeColor = System.Drawing.Color.White;
             this.button6.Image = ((System.Drawing.Image)(resources.GetObject("button6.Image")));
             this.button6.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button6.Location = new System.Drawing.Point(262, 279);
+            this.button6.Location = new System.Drawing.Point(262, 267);
             this.button6.Name = "button6";
             this.button6.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.button6.Size = new System.Drawing.Size(155, 27);
@@ -825,10 +808,10 @@
             this.button_Choosefile.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.button_Choosefile.Image = ((System.Drawing.Image)(resources.GetObject("button_Choosefile.Image")));
             this.button_Choosefile.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button_Choosefile.Location = new System.Drawing.Point(84, 14);
+            this.button_Choosefile.Location = new System.Drawing.Point(101, 22);
             this.button_Choosefile.Name = "button_Choosefile";
             this.button_Choosefile.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
-            this.button_Choosefile.Size = new System.Drawing.Size(172, 40);
+            this.button_Choosefile.Size = new System.Drawing.Size(155, 32);
             this.button_Choosefile.TabIndex = 2;
             this.button_Choosefile.Text = "     选择文件";
             this.button_Choosefile.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -844,15 +827,26 @@
             this.button_update.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.button_update.Image = ((System.Drawing.Image)(resources.GetObject("button_update.Image")));
             this.button_update.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button_update.Location = new System.Drawing.Point(262, 14);
+            this.button_update.Location = new System.Drawing.Point(262, 22);
             this.button_update.Name = "button_update";
             this.button_update.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
-            this.button_update.Size = new System.Drawing.Size(172, 40);
+            this.button_update.Size = new System.Drawing.Size(155, 32);
             this.button_update.TabIndex = 1;
             this.button_update.Text = "     上传";
             this.button_update.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button_update.UseVisualStyleBackColor = false;
             this.button_update.Click += new System.EventHandler(this.button_update_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Cursor = System.Windows.Forms.Cursors.Default;
+            this.label5.Font = new System.Drawing.Font("微软雅黑", 6.75F);
+            this.label5.Location = new System.Drawing.Point(5, 320);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(36, 14);
+            this.label5.TabIndex = 26;
+            this.label5.Text = "文件名:";
             // 
             // panel4
             // 
@@ -911,6 +905,46 @@
             this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
             this.notifyIcon1.Text = "RapidController";
             this.notifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseDoubleClick);
+            // 
+            // listBox_moduleList
+            // 
+            this.listBox_moduleList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(153)))));
+            this.listBox_moduleList.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listBox_moduleList.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.listBox_moduleList.ForeColor = System.Drawing.SystemColors.Window;
+            this.listBox_moduleList.FormattingEnabled = true;
+            this.listBox_moduleList.ItemHeight = 20;
+            this.listBox_moduleList.Location = new System.Drawing.Point(3, 22);
+            this.listBox_moduleList.Name = "listBox_moduleList";
+            this.listBox_moduleList.Size = new System.Drawing.Size(96, 240);
+            this.listBox_moduleList.TabIndex = 27;
+            // 
+            // button_refreshModFiles
+            // 
+            this.button_refreshModFiles.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(153)))), ((int)(((byte)(204)))));
+            this.button_refreshModFiles.FlatAppearance.BorderSize = 0;
+            this.button_refreshModFiles.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_refreshModFiles.Font = new System.Drawing.Font("微软雅黑", 8F);
+            this.button_refreshModFiles.ForeColor = System.Drawing.Color.White;
+            this.button_refreshModFiles.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button_refreshModFiles.Location = new System.Drawing.Point(18, 269);
+            this.button_refreshModFiles.Name = "button_refreshModFiles";
+            this.button_refreshModFiles.Size = new System.Drawing.Size(61, 22);
+            this.button_refreshModFiles.TabIndex = 28;
+            this.button_refreshModFiles.Text = "刷新列表";
+            this.button_refreshModFiles.UseVisualStyleBackColor = false;
+            this.button_refreshModFiles.Click += new System.EventHandler(this.button_refreshModFiles_Click);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Cursor = System.Windows.Forms.Cursors.Default;
+            this.label8.Font = new System.Drawing.Font("微软雅黑", 7F);
+            this.label8.Location = new System.Drawing.Point(1, 6);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(58, 16);
+            this.label8.TabIndex = 29;
+            this.label8.Text = "模块列表：";
             // 
             // Form1
             // 
@@ -1004,9 +1038,12 @@
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.NotifyIcon notifyIcon1;
         private System.Windows.Forms.Label label_OpenCfgFile;
-        private System.Windows.Forms.Button button10;
-        private System.Windows.Forms.Button button11;
-        private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.Button button_saveModule;
+        private System.Windows.Forms.TextBox textBox_fileName;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ListBox listBox_moduleList;
+        private System.Windows.Forms.Button button_refreshModFiles;
+        private System.Windows.Forms.Label label8;
     }
 }
 

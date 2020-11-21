@@ -18,31 +18,22 @@ namespace rapid2Controler
         /// <param name="controller">控制器</param>
         /// <param name="taskname">任务名称</param>
         /// <returns>返回值</returns>
-        public static int RAPID_ProgramReset(Controller controller, string taskname)
+        public static void  RAPID_ProgramReset(Controller controller, string taskname)
         {
-            controller.Logon(ABB.Robotics.Controllers.UserInfo.DefaultUser);//登录
-
-            if (controller.OperatingMode != ControllerOperatingMode.Auto)//自动模式
-            {
-                return -1;
-            }
-            if (!controller.AuthenticationSystem.CheckDemandGrant(Grant.ExecuteRapid))//可执行
-                controller.AuthenticationSystem.DemandGrant(Grant.ExecuteRapid);
             try
             {
-                using (Mastership m = Mastership.Request(controller.Rapid))//写权限
+                using (Mastership m = Mastership.Request(controller))//写权限
                 {
                     controller.Rapid.GetTask(taskname).ResetProgramPointer();//复位程序指针
                     m.Release();
                 }
-                return 0;
             }
             catch (Exception ex )
             {
                 MessageBox.Show(ex.Message,"错误");
             }
-            return 1;
         }
+
 
 
         /// <summary>

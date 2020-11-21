@@ -83,7 +83,7 @@
             this.textBox_rapidType.Location = new System.Drawing.Point(5, 143);
             this.textBox_rapidType.Multiline = true;
             this.textBox_rapidType.Name = "textBox_rapidType";
-            this.textBox_rapidType.Size = new System.Drawing.Size(100, 20);
+            this.textBox_rapidType.Size = new System.Drawing.Size(161, 20);
             this.textBox_rapidType.TabIndex = 10;
             // 
             // textBox_symbolType
@@ -92,7 +92,7 @@
             this.textBox_symbolType.Location = new System.Drawing.Point(5, 124);
             this.textBox_symbolType.Multiline = true;
             this.textBox_symbolType.Name = "textBox_symbolType";
-            this.textBox_symbolType.Size = new System.Drawing.Size(100, 20);
+            this.textBox_symbolType.Size = new System.Drawing.Size(161, 20);
             this.textBox_symbolType.TabIndex = 9;
             // 
             // textBox_varValue
@@ -101,7 +101,7 @@
             this.textBox_varValue.Location = new System.Drawing.Point(5, 105);
             this.textBox_varValue.Multiline = true;
             this.textBox_varValue.Name = "textBox_varValue";
-            this.textBox_varValue.Size = new System.Drawing.Size(100, 20);
+            this.textBox_varValue.Size = new System.Drawing.Size(161, 20);
             this.textBox_varValue.TabIndex = 8;
             // 
             // textBox_varName
@@ -111,7 +111,7 @@
             this.textBox_varName.Location = new System.Drawing.Point(5, 86);
             this.textBox_varName.Multiline = true;
             this.textBox_varName.Name = "textBox_varName";
-            this.textBox_varName.Size = new System.Drawing.Size(100, 20);
+            this.textBox_varName.Size = new System.Drawing.Size(161, 20);
             this.textBox_varName.TabIndex = 7;
             // 
             // button2
@@ -194,7 +194,7 @@
             this.label_wobj.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label_wobj.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label_wobj.ForeColor = System.Drawing.Color.Black;
-            this.label_wobj.Location = new System.Drawing.Point(9, 54);
+            this.label_wobj.Location = new System.Drawing.Point(9, 64);
             this.label_wobj.Name = "label_wobj";
             this.label_wobj.Size = new System.Drawing.Size(60, 20);
             this.label_wobj.TabIndex = 2;
