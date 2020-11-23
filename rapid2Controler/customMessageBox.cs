@@ -35,12 +35,12 @@ namespace rapid2Controler
         private void customMessageBox_Load(object sender, EventArgs e)
         {
             label1.Text = Form1.MessageContent;
-            // 自适应宽度
-            this.Size = new Size(label1.Size.Width +35,this.Size.Height);
-            pictureBox2.Size = new Size(panel1.Size.Width-2, pictureBox2.Size.Height);
+            // 自适应宽度 panel Size随窗体变化
+            this.Size = new Size(label1.Size.Width+ button1.Size.Width + pictureBox1.Width + 7,this.Size.Height);
+            pictureBox2.Size = new Size(label1.Size.Width + button1.Size.Width + pictureBox1.Width+2, pictureBox2.Size.Height);
 
             // 重设“关闭” 坐标  ---- 暂时不用，已设置visible为false
-
+            // pictureBox2.Size = new Size(panel1.Size.Width+10, pictureBox2.Size.Height);
             this.Location = Form1.p2;
             timer_opacity.Interval = 20;
             timer_reduceOpacity.Interval = 20;

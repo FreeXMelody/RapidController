@@ -134,13 +134,13 @@
             // 
             this.listBox2_fileStore.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(153)))));
             this.listBox2_fileStore.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listBox2_fileStore.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.listBox2_fileStore.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.listBox2_fileStore.ForeColor = System.Drawing.SystemColors.Window;
             this.listBox2_fileStore.FormattingEnabled = true;
-            this.listBox2_fileStore.ItemHeight = 20;
-            this.listBox2_fileStore.Location = new System.Drawing.Point(101, 122);
+            this.listBox2_fileStore.ItemHeight = 17;
+            this.listBox2_fileStore.Location = new System.Drawing.Point(101, 124);
             this.listBox2_fileStore.Name = "listBox2_fileStore";
-            this.listBox2_fileStore.Size = new System.Drawing.Size(316, 140);
+            this.listBox2_fileStore.Size = new System.Drawing.Size(316, 136);
             this.listBox2_fileStore.TabIndex = 10;
             this.listBox2_fileStore.SelectedIndexChanged += new System.EventHandler(this.listBox2_fileStore_SelectedIndexChanged);
             this.listBox2_fileStore.DoubleClick += new System.EventHandler(this.listBox2_fileStore_DoubleClick);
@@ -631,13 +631,13 @@
             // 
             this.listBox_moduleList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(153)))));
             this.listBox_moduleList.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listBox_moduleList.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.listBox_moduleList.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.listBox_moduleList.ForeColor = System.Drawing.SystemColors.Window;
             this.listBox_moduleList.FormattingEnabled = true;
-            this.listBox_moduleList.ItemHeight = 20;
+            this.listBox_moduleList.ItemHeight = 17;
             this.listBox_moduleList.Location = new System.Drawing.Point(3, 22);
             this.listBox_moduleList.Name = "listBox_moduleList";
-            this.listBox_moduleList.Size = new System.Drawing.Size(96, 240);
+            this.listBox_moduleList.Size = new System.Drawing.Size(96, 238);
             this.listBox_moduleList.TabIndex = 27;
             // 
             // button_saveModule

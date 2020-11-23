@@ -123,15 +123,18 @@ namespace rapid2Controler
                 {
                     controller = Controller.Connect(info.SystemId, ConnectionType.Standalone);
                     controller.Logon(UserInfo.DefaultUser);
-                    Text = "当前已自动连接 ID：" + id + "    IP:" + info.IPAddress.ToString() + "    Port:"+info.WebServicesPort.ToString();
+                    Text = "当前已自动连接 ID:" + id + "    IP:" + info.IPAddress.ToString() + "    Port:"+info.WebServicesPort.ToString();
                     label2_INFO.Text = "已连接。";
                     setInfoColor();
                     ShowNewMessage("ヽ(✿ﾟ▽ﾟ)ノ 成功连接到示教器啦：" + id);
                     button_connect.Text = "     断开";
                 }
-                else { MessageBox.Show("(ノへ￣、) 未扫描到控制器或控制器ID不存在，请检查配置文件！", "自动连接错误");}
             }
-        }
+            if (controller == null)
+            {
+                MessageBox.Show("(ノへ￣、) 未扫描到控制器或控制器ID不存在，请检查配置文件！", "自动连接错误");
+            }
+    }
 
         private void button_Choosefile_Click(object sender, EventArgs e)
         {
@@ -689,21 +692,6 @@ namespace rapid2Controler
         private void label_OpenCfgFile_Click(object sender, EventArgs e)
         {
             Process.Start(cfgPath);
-        }
-
-
-
-        /// <summary>
-        /// 单独form显示img
-        /// </summary>
-        /// <param name="resourceImg">提供资源库中的一个image</param>
-        public void Showimg(Image resourceImg)
-        {
-            form_ShowImg form_ShowImg = new form_ShowImg();
-            form_ShowImg.Show();
-            form_ShowImg.Size = new Size(643, 877);
-            Image a = resourceImg;
-            form_ShowImg.BackgroundImage = a;
         }
 
         private void listBox2_fileStore_DoubleClick(object sender, EventArgs e)
