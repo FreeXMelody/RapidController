@@ -54,16 +54,28 @@ namespace rapid2Controler
         public static string MessageContent;
         // config.ini Read & Write
         string cfgPath = Application.StartupPath + "/config.ini";
+        // state changed delegate&event
+        public delegate void StateChangeEventHandler();
+        public event StateChangeEventHandler StateChanging;
+         
         public Form1()
         {
             InitializeComponent();
             Checkcfg_g();
             // init form layout
             this.Size = new Size(712, 543);
-            panel2.Visible = false;
+            panel2.Visible = false; 
             panel3.Visible = false;
         }
 
+        
+        public void StateChangeMethod()
+        {
+            if (StateChanging!=null)
+            {
+                this.StateChanging();
+            }
+        }
         /// <summary>
         /// 全局配置项检查
         /// </summary>
@@ -727,8 +739,9 @@ namespace rapid2Controler
                     module.SaveToFile(controller.FileSystem.RemoteDirectory);
                     //   tRob1.SaveProgramToFile(controller.FileSystem.LocalDirectory);
                     // + @"\" + textBox_fileName.Text +".mod"
-                    ShowNewMessage("保存完毕啦···目录：" + controller.FileSystem.LocalDirectory);
+                    ShowNewMessage("保存完毕啦···目录：" + controller.FileSystem.RemoteDirectory);
                     m.Release();
+                    button1_Click(null, null); // refresh 
                 }
             }
             catch (Exception ex)

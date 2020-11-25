@@ -120,6 +120,7 @@
             // 
             // label2_INFO
             // 
+            this.label2_INFO.AutoEllipsis = true;
             this.label2_INFO.AutoSize = true;
             this.label2_INFO.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(153)))));
             this.label2_INFO.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -616,12 +617,12 @@
             this.button_refreshModFiles.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(153)))), ((int)(((byte)(204)))));
             this.button_refreshModFiles.FlatAppearance.BorderSize = 0;
             this.button_refreshModFiles.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_refreshModFiles.Font = new System.Drawing.Font("微软雅黑", 8F);
+            this.button_refreshModFiles.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.button_refreshModFiles.ForeColor = System.Drawing.Color.White;
             this.button_refreshModFiles.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button_refreshModFiles.Location = new System.Drawing.Point(18, 269);
+            this.button_refreshModFiles.Location = new System.Drawing.Point(3, 269);
             this.button_refreshModFiles.Name = "button_refreshModFiles";
-            this.button_refreshModFiles.Size = new System.Drawing.Size(61, 22);
+            this.button_refreshModFiles.Size = new System.Drawing.Size(91, 22);
             this.button_refreshModFiles.TabIndex = 28;
             this.button_refreshModFiles.Text = "刷新列表";
             this.button_refreshModFiles.UseVisualStyleBackColor = false;
@@ -648,7 +649,7 @@
             this.button_saveModule.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.button_saveModule.ForeColor = System.Drawing.Color.White;
             this.button_saveModule.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button_saveModule.Location = new System.Drawing.Point(3, 339);
+            this.button_saveModule.Location = new System.Drawing.Point(3, 293);
             this.button_saveModule.Name = "button_saveModule";
             this.button_saveModule.Size = new System.Drawing.Size(91, 22);
             this.button_saveModule.TabIndex = 24;
@@ -664,7 +665,7 @@
             this.button_resetPoint.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.button_resetPoint.ForeColor = System.Drawing.Color.White;
             this.button_resetPoint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button_resetPoint.Location = new System.Drawing.Point(3, 293);
+            this.button_resetPoint.Location = new System.Drawing.Point(3, 335);
             this.button_resetPoint.Name = "button_resetPoint";
             this.button_resetPoint.Size = new System.Drawing.Size(91, 22);
             this.button_resetPoint.TabIndex = 20;
