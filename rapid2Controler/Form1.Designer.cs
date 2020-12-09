@@ -897,7 +897,6 @@
             this.label_controllerState.Size = new System.Drawing.Size(114, 17);
             this.label_controllerState.TabIndex = 9;
             this.label_controllerState.Text = " <当前控制器状态>";
-            this.label_controllerState.Click += new System.EventHandler(this.label_controllerState_Click);
             // 
             // panel_sonForm
             // 

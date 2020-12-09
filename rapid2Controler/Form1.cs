@@ -54,10 +54,6 @@ namespace rapid2Controler
         public static string MessageContent;
         // config.ini Read & Write
         string cfgPath = Application.StartupPath + "/config.ini";
-        // state changed delegate&event
-        public delegate void StateChangeEventHandler();
-        public event StateChangeEventHandler StateChanging;
-         
         public Form1()
         {
             InitializeComponent();
@@ -66,16 +62,15 @@ namespace rapid2Controler
             this.Size = new Size(712, 543);
             panel2.Visible = false; 
             panel3.Visible = false;
+
+            controller.StateChanged += Controller_StateChanged;
         }
 
-        
-        public void StateChangeMethod()
+        private void Controller_StateChanged(object sender, StateChangedEventArgs e)
         {
-            if (StateChanging!=null)
-            {
-                this.StateChanging();
-            }
+            label_controllerState.Text = "控制器状态："+controller.State.ToString();
         }
+
         /// <summary>
         /// 全局配置项检查
         /// </summary>
@@ -87,8 +82,6 @@ namespace rapid2Controler
             string a = config.Read("cfgInit", "AutoConnect", "0", cfgPath);
             // 显示[ 复位程序指针]
             string ShowPointer = config.Read("cfgInit", "ShowResetPointer","0",cfgPath);
-            // 显示表单 ShowAllSheets
-            string ShowSheets = config.Read("cfgInit", "ShowAllSheets", "0", cfgPath);
             if (a == "1")
             {
                 checkBox1.Checked = true;
@@ -151,7 +144,7 @@ namespace rapid2Controler
         private void button_Choosefile_Click(object sender, EventArgs e)
         {
             OpenFileDialog fileDialog = new OpenFileDialog();
-            fileDialog.Filter = ".mod文件(*.mod)|*.mod";
+            fileDialog.Filter = "Rapid Module(*.mod)|*.mod";
             fileDialog.ValidateNames = true;
             fileDialog.CheckFileExists = true;
             fileDialog.CheckPathExists = true;
@@ -231,7 +224,7 @@ namespace rapid2Controler
                     label2_INFO.Text = "已断开连接。";
                     Text = "已断开连接....";
                     setInfoColor();
-                    controller.Dispose(); // 释放资源
+                    controller.Dispose();
                     controller = null;
                     button_connect.Text = "     连接";
                 }
@@ -409,7 +402,7 @@ namespace rapid2Controler
                 label2_INFO.Text = "文件导出成功，文件名为："+ listBox2_fileStore.SelectedItem.ToString().Split('/').Last() +"  目录："+localDir;
                 setInfoColor(Color.FromArgb(153, 204, 102), Color.FromArgb(248, 248, 255));
             }
-            catch (System.InvalidOperationException) { label2_INFO.Text = ("文件为只读文件，覆写失败！"); setInfoColor(Color.FromArgb(205,38,38), Color.FromArgb(248, 248, 255)); }
+            catch (System.InvalidOperationException) { label2_INFO.Text = ("无效操作，文件可能为只读文件，覆写失败！"); setInfoColor(Color.FromArgb(205,38,38), Color.FromArgb(248, 248, 255)); }
 
         }
 
@@ -478,18 +471,6 @@ namespace rapid2Controler
             else { System.Diagnostics.Process.Start(CodePath); }
         }
 
-        private void label_controllerState_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                label_controllerState.Text = "当前控制器状态：" + controller.State.ToString();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            // TODO: 实时更新控制器状态 
-        }
         public void checkVisibleSonForm()
         {
             if (panel2.Visible == true || panel3.Visible == true)

@@ -12,10 +12,8 @@ namespace rapid2Controler
 {
     class animations
     {
-        // TODO:难整·····
         static Form MainForm = new Form();
         public static System.Timers.Timer timer;
-        public delegate void SetControlValue(string value); // 定义委托
         public static void opacityChange(Form form)
         {
             MainForm = form;
